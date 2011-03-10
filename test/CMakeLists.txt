@@ -1,5 +1,5 @@
-if(${WC_QT_SUPPORT})
+if(${TEST_APP})
     add_subdirectory(keyEventTest)
     add_subdirectory(mouseEventTest)
     add_subdirectory(commandTest)
-endif(${WC_QT_SUPPORT})
+endif(${TEST_APP})

@@ -21,9 +21,9 @@ macro(add_unit_test NAME)
         DEPENDS ${TEST_${NAME}_FILES}
 	)
     set(CXX_${NAME}_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
-    if(${WC_QT_SUPPORT})
+    if(${TEST_APP})
         qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
-    endif(${WC_QT_SUPPORT})
+    endif(${TEST_APP})
     add_executable(${NAME} ${CXX_${NAME}_OUTPUT_DIR}/${NAME}.cxx ${TEST_${NAME}_MOCS})
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties("${NAME}" 
@@ -34,9 +34,9 @@ macro(add_unit_test NAME)
 endmacro(add_unit_test)
 
 macro(add_manual_test NAME)
-    if(${WC_QT_SUPPORT})
+    if(${TEST_APP})
         qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
-    endif(${WC_QT_SUPPORT})
+    endif(${TEST_APP})
     add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties(${NAME} 

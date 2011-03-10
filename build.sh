@@ -39,7 +39,5 @@ clear &&
     title "CMAKE:\n" &&
         cmake -DCMAKE_BUILD_TYPE=Debug ../ && hr &&
     title "MAKE:\n" &&
-        make && hr &&
-#title "TESTS:\n" &&
-#        runTests "../bin/test/unit_tests/*"
+        make
 
