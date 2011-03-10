@@ -1,0 +1,46 @@
+macro(add_test_files NAME)
+    foreach(TEST_FILE ${ARGN})
+        set(TEST_${NAME}_FILES ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FILE} ${TEST_${NAME}_FILES})
+    endforeach(TEST_FILE)
+endmacro(add_test_files)
+
+macro(add_test_moc_headers NAME)
+    foreach(TEST_MOC_HEADER ${ARGN})
+        set(TEST_${NAME}_MOC_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_MOC_HEADER} ${TEST_${NAME}_MOC_HEADERS})
+    endforeach(TEST_MOC_HEADER)
+endmacro(add_test_moc_headers)
+
+macro(add_test_link_libs NAME)
+    set(TEST_${NAME}_LINK_LIBS ${ARGN} ${TEST_${NAME}_LINK_LIBS})
+endmacro(add_test_link_libs)
+
+macro(add_unit_test NAME)
+	add_custom_command(
+		OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.cxx
+        COMMAND cxxtestgen.pl --error-printer --abort-on-fail --have-eh -o ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.cxx ${TEST_${NAME}_FILES}
+        DEPENDS ${TEST_${NAME}_FILES}
+	)
+    set(CXX_${NAME}_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
+    if(${WC_QT_SUPPORT})
+        qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
+    endif(${WC_QT_SUPPORT})
+    add_executable(${NAME} ${CXX_${NAME}_OUTPUT_DIR}/${NAME}.cxx ${TEST_${NAME}_MOCS})
+    target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
+    set_target_properties("${NAME}" 
+        PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/test/unit_tests/
+    )    
+	#add_test("${NAME}" "${EXECUTABLE_OUTPUT_PATH}/${NAME}")
+endmacro(add_unit_test)
+
+macro(add_manual_test NAME)
+    if(${WC_QT_SUPPORT})
+        qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
+    endif(${WC_QT_SUPPORT})
+    add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
+    target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
+    set_target_properties(${NAME} 
+        PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/test/manual_tests/
+    )    
+endmacro(add_manual_test)

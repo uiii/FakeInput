@@ -1,0 +1,5 @@
+if(${WC_QT_SUPPORT})
+    add_subdirectory(keyEventTest)
+    add_subdirectory(mouseEventTest)
+    add_subdirectory(commandTest)
+endif(${WC_QT_SUPPORT})
