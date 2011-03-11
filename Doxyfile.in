@@ -51,7 +51,7 @@ PROJECT_LOGO           =
 # If a relative path is entered, it will be relative to the location 
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = ../doc/doxygen
+OUTPUT_DIRECTORY       = @CMAKE_HOME_DIRECTORY@/doc/doxygen
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 
 # 4096 sub-directories (in 2 levels) under the output directory of each output 
@@ -612,7 +612,7 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = ../src
+INPUT                  = @CMAKE_HOME_DIRECTORY@/src
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
@@ -1488,8 +1488,8 @@ SKIP_FUNCTION_MACROS   = YES
 # If a tag file is not located in the directory in which doxygen 
 # is run, you must also specify the path to the tagfile here.
 
-TAGFILES               = ../config/doxygen/qt.tag=http://doc.qt.nokia.com/4.7/ \
-                         ../config/doxygen/xlib.tag=http://tronche.com/gui/x/xlib/
+TAGFILES               = @CMAKE_HOME_DIRECTORY@/config/doxygen/qt.tag=http://doc.qt.nokia.com/4.7/ \
+                         @CMAKE_HOME_DIRECTORY@/config/doxygen/xlib.tag=http://tronche.com/gui/x/xlib/
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create 
 # a tag file that is based on the input files it reads.

@@ -4,8 +4,6 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <X11/Xlib.h>
-
 #include <iostream>
 
 #include "keyEventSender.h"
@@ -34,7 +32,9 @@ Grabber::Grabber():
     connect(grabButton_, SIGNAL(clicked()), this, SLOT(grabKeyEvent()));
     connect(sendButton_, SIGNAL(pressed()), sender_, SLOT(show()));
 
+#ifdef UNIX
     display_ = XOpenDisplay(0);
+#endif
 
     setLayout(vbox);
 }
@@ -43,6 +43,7 @@ Grabber::~Grabber()
 {
 }
 
+#ifdef UNIX
 bool Grabber::x11Event(XEvent* event)
 {
     if(isReady_ == false)
@@ -73,13 +74,16 @@ bool Grabber::x11Event(XEvent* event)
 
     return false;
 }
+#endif
 
 void Grabber::grabKeyEvent()
 {
     if(isReady_ == true)
     {
+#ifdef UNIX
         XGrabKeyboard(display_, *window_, false, GrabModeAsync, GrabModeAsync, CurrentTime);
         isGrabbing_ = true;
+#endif
     }
     else
     {

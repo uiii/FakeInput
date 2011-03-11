@@ -3,8 +3,6 @@
 
 #include <QDialog>
 
-#include <X11/Xlib.h>
-
 #include "key.h"
 
 class Sender : public QDialog
@@ -22,7 +20,9 @@ public slots:
     void sendRelease();
 
 private:
+#ifdef UNIX
     Display* display_;
+#endif
 
     wc::Key key_;
 };

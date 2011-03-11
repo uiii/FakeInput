@@ -76,6 +76,7 @@ void MouseController::keyReleaseEvent(QKeyEvent* event)
     }
 }
 
+#ifdef UNIX
 bool MouseController::x11Event(XEvent* event)
 {
     if(event->type == FocusOut)
@@ -86,3 +87,4 @@ bool MouseController::x11Event(XEvent* event)
 
     return false;
 }
+#endif

@@ -11,7 +11,9 @@ public:
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
 
+#ifdef UNIX
     bool x11Event(XEvent* event);
+#endif
 
 };
 

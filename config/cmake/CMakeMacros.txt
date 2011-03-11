@@ -37,10 +37,39 @@ macro(add_manual_test NAME)
     if(${TEST_APP})
         qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
     endif(${TEST_APP})
+
     add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
+
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties(${NAME} 
         PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/test/manual_tests/
-    )    
+    )
 endmacro(add_manual_test)
+
+macro(add_manual_test_gui NAME)
+    if(${TEST_APP})
+        qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
+    endif(${TEST_APP})
+
+    if(${WIN32})
+        add_executable(${NAME} WIN32 ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
+    else(${WIN32})
+        add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
+    endif(${WIN32})
+
+    target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
+    set_target_properties(${NAME} 
+        PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/test/manual_tests/
+            LINK_FLAGS "/ENTRY:\"WinMainCRTStartup\""
+    )
+
+
+    if(${WIN32})
+        set_target_properties(${NAME} 
+            PROPERTIES
+                LINK_FLAGS "/ENTRY:\"WinMainCRTStartup\""
+        )
+    endif(${WIN32})
+endmacro(add_manual_test_gui)

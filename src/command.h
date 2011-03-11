@@ -1,5 +1,5 @@
-#ifndef WC_COMMAND_H
-#define WC_COMMAND_H
+#ifndef FI_COMMAND_H
+#define FI_COMMAND_H
 
 #include "config.h"
 

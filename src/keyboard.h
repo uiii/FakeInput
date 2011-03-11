@@ -1,9 +1,11 @@
-#ifndef WC_KEYBOARD_H
-#define WC_KEYBOARD_H
+#ifndef FI_KEYBOARD_H
+#define FI_KEYBOARD_H
 
 #include "config.h"
 
-#include <X11/Xlib.h>
+#ifdef UNIX
+    #include <X11/Xlib.h>
+#endif
 
 #include "key.h"
 
@@ -43,7 +45,9 @@ namespace wc
          */
         static void sendKeyEvent_(Key key, bool isPress, bool flush);
 
+#ifdef UNIX
         static Display* display_;
+#endif
     };
 }
 

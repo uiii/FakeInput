@@ -5,10 +5,12 @@ set(SRCS
     command.cpp
 )
 
-set(LIBS
-    ${X11_LIBRARIES}
-    ${XTest_LIBRARIES}
-)
+if(${UNIX})
+    set(LIBS
+        ${X11_LIBRARIES}
+        ${XTest_LIBRARIES}
+    )
+endif(${UNIX})
 
 if(${TEST_APP})
     set(LIBS ${QT_LIBRARIES} ${LIBS})

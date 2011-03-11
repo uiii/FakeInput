@@ -3,12 +3,15 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-#include <X11/Xlib.h>
-
 #include "keyboard.h"
 
 Sender::Sender():
-    QDialog(0, Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint)
+    QDialog(0, Qt::Tool
+            | Qt::WindowStaysOnTopHint
+#ifdef UNIX
+            | Qt::X11BypassWindowManagerHint
+#endif
+    )
 {
     QVBoxLayout* vbox = new QVBoxLayout(this);
     QPushButton* sendButton = new QPushButton("send key event", this);
@@ -22,7 +25,9 @@ Sender::Sender():
     connect(sendButton, SIGNAL(released()), this, SLOT(sendRelease()));
     connect(quitButton, SIGNAL(pressed()), this, SLOT(hide()));
 
+#ifdef UNIX
     display_ = XOpenDisplay(0);
+#endif
 }
 
 Sender::~Sender() {}

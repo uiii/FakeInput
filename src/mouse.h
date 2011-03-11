@@ -1,9 +1,13 @@
-#ifndef WC_MOUSE_H
-#define WC_MOUSE_H
+#ifndef FI_MOUSE_H
+#define FI_MOUSE_H
 
 #include "config.h"
 
-#include <X11/Xlib.h>
+#ifdef LINUX
+    #include <X11/Xlib.h>
+#elif WIN32
+    #include <windows.h>
+#endif
 
 namespace wc
 {
@@ -58,7 +62,9 @@ namespace wc
         static void releaseButton(int button);
 
     private:
+#ifdef UNIX
         static Display* display_;
+#endif
     };
 }
 

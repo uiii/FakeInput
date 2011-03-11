@@ -3,8 +3,6 @@
 
 #include <QWidget>
 
-#include <X11/Xlib.h>
-
 #include "key.h"
 
 class QLabel;
@@ -20,14 +18,18 @@ public:
     Grabber();
     virtual ~Grabber();
 
+#ifdef UNIX
     bool x11Event(XEvent* event);
+#endif
 
 public slots:
     void grabKeyEvent();
 
 private:
+#ifdef UNIX
     Display* display_;
     Window* window_;
+#endif
 
     bool isReady_;
     bool isGrabbing_;

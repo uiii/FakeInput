@@ -1,10 +1,12 @@
-#ifndef WC_KEY_H
-#define WC_KEY_H
+#ifndef FI_KEY_H
+#define FI_KEY_H
 
 #include "config.h"
 
-#include <X11/Xlib.h>
-#include <X11/keysym.h>
+#ifdef UNIX
+    #include <X11/Xlib.h>
+    #include <X11/keysym.h>
+#endif
 
 #include <string>
 
@@ -28,7 +30,9 @@ namespace wc
          * @param event
          *     XKeyEvent (Xlib key event) containing keycode.
          */
+#ifdef UNIX
         Key(XEvent* event);
+#endif
 
         /** Key constructor.
          *
@@ -54,7 +58,9 @@ namespace wc
          * @returns
          *     KeySym representing the key.
          */
+#ifdef UNIX
         KeySym keysym();
+#endif
 
         /** Gives the name of the key.
          *
@@ -65,7 +71,9 @@ namespace wc
 
     private:
         unsigned int code_;
+#ifdef UNIX
         KeySym keysym_;
+#endif
         std::string name_;
     };
 }

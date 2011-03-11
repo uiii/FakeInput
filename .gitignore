@@ -2,3 +2,4 @@ bin
 doc
 build
 *.swp
+Doxyfile
