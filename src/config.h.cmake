@@ -2,7 +2,13 @@
 #define WC_CONFIG_H
 
 #cmakedefine TEST_APP
-#cmakedefine UNIX
-#cmakedefine WIN32
+
+#ifndef UNIX
+    #cmakedefine UNIX
+#endif
+
+#ifndef WIN32
+    #cmakedefine WIN32
+#endif
 
 #endif
