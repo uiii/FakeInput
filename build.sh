@@ -37,7 +37,7 @@ cd ./build
 
 clear &&
     title "CMAKE:\n" &&
-        cmake -DCMAKE_BUILD_TYPE=Debug ../ && hr &&
+        cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_APP=ON -DDOC=ON ../ && hr &&
     title "MAKE:\n" &&
         make
 
