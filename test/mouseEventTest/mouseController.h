@@ -1,6 +1,8 @@
 #ifndef TEST_MOUSECONTROLLER_H
 #define TEST_MOUSECONTROLLER_H
 
+#include "config.h"
+
 #include <QDialog>
 
 class MouseController : public QDialog

@@ -3,9 +3,9 @@
 
 #include "config.h"
 
-#ifdef LINUX
+#ifdef UNIX
     #include <X11/Xlib.h>
-#elif WIN32
+#elif WIN
     #include <windows.h>
 #endif
 
