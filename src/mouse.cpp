@@ -1,8 +1,5 @@
 #include "mouse.h"
 
-#include <cmath>
-#include <iostream>
-
 #ifdef UNIX
     #include <X11/extensions/XTest.h>
 #endif
@@ -88,7 +85,30 @@ namespace wc
 #ifdef UNIX
     int Mouse::buttonToX11Button_(Button button)
     {
-        return std::log(button);
+        int xButton = 0;
+
+        switch(button)
+        {
+            case LEFT:
+                xButton = 1;
+            break;
+            case MIDDLE:
+                xButton = 2;
+            break;
+            case RIGHT:
+                xButton = 3;
+            break;
+            case WHEEL_UP:
+                xButton = 4;
+            break;
+            case WHEEL_DOWN:
+                xButton = 5;
+            break;
+            default:
+            break;
+        }
+
+        return xButton;
     }
 #endif
 
@@ -124,15 +144,6 @@ namespace wc
             default:
             break;
         }
-
-        /*bool release = ! press;
-        if(release && (input.mi.dwFlags != MOUSEEVENTF_WHEEL))
-        {
-            // Change event to release instead of press.
-            // Value of MOUSEEVENTF_*UP constant
-            // is double of MOUSEEVENTF_*DOWN constant
-            input.mi.dwFlags = input.mi.dwFlags * 2;
-        }*/
 
         return input;
     }
