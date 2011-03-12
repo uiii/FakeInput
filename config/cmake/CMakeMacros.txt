@@ -52,11 +52,11 @@ macro(add_manual_test_gui NAME)
         qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
     endif(${TEST_APP})
 
-    if(${WIN32})
+    if(${WIN32} AND NOT ${DEBUG})
         add_executable(${NAME} WIN32 ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
-    else(${WIN32})
+    else(${WIN32} AND NOT ${DEBUG})
         add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
-    endif(${WIN32})
+    endif(${WIN32} AND NOT ${DEBUG})
 
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties(${NAME} 
@@ -65,10 +65,10 @@ macro(add_manual_test_gui NAME)
     )
 
 
-    if(${WIN32})
+    if(${WIN32} AND NOT ${DEBUG})
         set_target_properties(${NAME} 
             PROPERTIES
                 LINK_FLAGS "/ENTRY:\"WinMainCRTStartup\""
         )
-    endif(${WIN32})
+    endif(${WIN32} AND NOT ${DEBUG})
 endmacro(add_manual_test_gui)

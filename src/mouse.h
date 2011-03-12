@@ -5,7 +5,7 @@
 
 #ifdef UNIX
     #include <X11/Xlib.h>
-#elif WIN
+#elif WIN32
     #include <windows.h>
 #endif
 
@@ -37,33 +37,42 @@ namespace wc
          */
         static void moveTo(int x, int y);
 
+        /** Mouse button which can be pressed or released */
+        enum Button {
+            LEFT = 1,
+            MIDDLE = 2,
+            RIGHT = 4,
+            WHEEL_UP = 8,
+            WHEEL_DOWN = 16
+        };
+
         /** Simulates mouse button press.
          *
          * @param button
-         *     Number of button to press.
-         *         - 1: left button
-         *         - 2: middle button
-         *         - 3: right button
-         *         - 4: wheel up
-         *         - 5: wheel down
+         *     Button to be pressed
          */
-        static void pressButton(int button);
+        static void pressButton(Button button);
 
         /** Simulates mouse button release.
          *
          * @param button
-         *     Number of button to release.
-         *         - 1: left button
-         *         - 2: middle button
-         *         - 3: right button
-         *         - 4: wheel up
-         *         - 5: wheel down
+         *     Button to be released
          */
-        static void releaseButton(int button);
+        static void releaseButton(Button button);
+
+        static int pressedButtons();
 
     private:
+        static int pressedButtons_;
+
 #ifdef UNIX
+        static int buttonToX11Button_(Button button);
+
         static Display* display_;
+#endif
+
+#ifdef WIN32
+        static INPUT buttonToWinEvent_(Button button, bool press);
 #endif
     };
 }
