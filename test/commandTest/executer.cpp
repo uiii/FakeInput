@@ -4,6 +4,9 @@
 #include <QPushButton>
 #include <QLineEdit>
 
+#include <string>
+#include <iostream>
+
 #include "command.h"
 
 Executer::Executer():
@@ -29,6 +32,6 @@ Executer::~Executer()
 }
 
 void Executer::runCommand()
-{
-    wc::Command::run(cmd_->text().toStdString());
+{ 
+    wc::Command::run(cmd_->text().toAscii().data());
 }
