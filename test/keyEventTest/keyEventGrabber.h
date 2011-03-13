@@ -20,6 +20,8 @@ public:
 
 #ifdef UNIX
     bool x11Event(XEvent* event);
+#elif WIN32
+    bool winEvent(MSG* message, long* result);
 #endif
 
 public slots:

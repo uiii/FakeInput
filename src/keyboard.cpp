@@ -15,16 +15,12 @@ namespace wc
 
     void Keyboard::pressKey(wc::Key key)
     {
-#ifdef UNIX
         sendKeyEvent_(key, true, true);
-#endif
     }
 
     void Keyboard::releaseKey(wc::Key key)
     {
-#ifdef UNIX
         sendKeyEvent_(key, false, true);
-#endif
     }
 
     void Keyboard::sendKeyEvent_(wc::Key key, bool isPress, bool flush)
@@ -42,6 +38,20 @@ namespace wc
             {
                 XFlush(display_);
             }
+        }
+#elif WIN32
+        if(key.code() == 0)
+        {
+            std::cerr << "Cannot send <no key> event";
+        }
+        else
+        {
+            INPUT input;
+            ZeroMemory(&input, sizeof(INPUT));
+            input.type = INPUT_KEYBOARD;
+            input.ki.wVk = key.virtualKey();
+            input.ki.dwFlags = (isPress) ? 0 : KEYEVENTF_KEYUP;
+            SendInput(1, &input, sizeof(INPUT));
         }
 #endif
     }

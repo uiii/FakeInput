@@ -74,6 +74,29 @@ bool Grabber::x11Event(XEvent* event)
 
     return false;
 }
+#elif WIN32
+bool Grabber::winEvent(MSG* message, long* result)
+{
+    isReady_ = true;
+
+    switch(message->message)
+    {
+        case WM_KEYUP:
+        case WM_SYSKEYUP:
+            if(isGrabbing_ == false) return false;
+            key_ = wc::Key(message);
+            sender_->setKey(key_);
+
+            keyName_->setText(QString("key name: ") + QString(key_.name().c_str()));
+
+            isGrabbing_ = false;
+        break;
+        default:
+        break;
+    }
+
+    return false;
+}
 #endif
 
 void Grabber::grabKeyEvent()
@@ -82,8 +105,8 @@ void Grabber::grabKeyEvent()
     {
 #ifdef UNIX
         XGrabKeyboard(display_, *window_, false, GrabModeAsync, GrabModeAsync, CurrentTime);
-        isGrabbing_ = true;
 #endif
+        isGrabbing_ = true;
     }
     else
     {
