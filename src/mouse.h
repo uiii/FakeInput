@@ -60,6 +60,11 @@ namespace wc
          */
         static void releaseButton(Button button);
 
+        /** Returns bit map of pressed buttons
+         *
+         * @returns
+         *     Bit map of pressed buttons
+         */
         static int pressedButtons();
 
     private:
