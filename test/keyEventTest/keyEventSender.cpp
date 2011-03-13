@@ -7,13 +7,11 @@
 #include "keyboard.h"
 
 Sender::Sender():
-    QWidget(0//, Qt::ToolTip
-            //| Qt::WindowStaysOnTopHint
+    QWidget(0, Qt::WindowStaysOnTopHint
 #ifdef UNIX
             | Qt::X11BypassWindowManagerHint
 #endif
-    ),
-    focusWindow_(0)
+    )
 {
     setFocusPolicy(Qt::NoFocus);
     QVBoxLayout* vbox = new QVBoxLayout(this);
