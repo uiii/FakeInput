@@ -9,19 +9,19 @@
 
 #include <iostream>
 
-namespace wc
+namespace FakeInput
 {
-    void Keyboard::pressKey(wc::Key key)
+    void Keyboard::pressKey(Key key)
     {
         sendKeyEvent_(key, true, true);
     }
 
-    void Keyboard::releaseKey(wc::Key key)
+    void Keyboard::releaseKey(Key key)
     {
         sendKeyEvent_(key, false, true);
     }
 
-    void Keyboard::sendKeyEvent_(wc::Key key, bool isPress, bool flush)
+    void Keyboard::sendKeyEvent_(Key key, bool isPress, bool flush)
     {
 #ifdef UNIX
         if(key.keysym() == NoSymbol)

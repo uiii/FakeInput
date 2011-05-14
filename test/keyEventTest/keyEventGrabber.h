@@ -41,7 +41,7 @@ private:
     QPushButton* grabButton_;
     QPushButton* sendButton_;
 
-    wc::Key key_;
+    FakeInput::Key key_;
 
     Sender* sender_;
 };

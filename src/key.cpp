@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 
-namespace wc
+namespace FakeInput
 {
     Key::Key()
     {

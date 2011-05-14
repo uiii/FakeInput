@@ -12,7 +12,7 @@
 
 #include <string>
 
-namespace wc
+namespace FakeInput
 {
     /** Represents real keyboard button.
      */

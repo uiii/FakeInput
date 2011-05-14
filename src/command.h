@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace wc
+namespace FakeInput
 {
     /** Command-line commands executor.
      *

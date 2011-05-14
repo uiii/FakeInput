@@ -59,15 +59,17 @@ bool Grabber::x11Event(XEvent* event)
 
     if(isGrabbing_ == true)
     {
-        if(event->type == KeyPress || event->type == KeyRelease)
+        if(event->type == KeyPress)// || event->type == KeyRelease)
         {
-            key_ = wc::Key(event);
+            key_ = FakeInput::Key(event);
             sender_->setKey(key_);
 
             keyName_->setText(QString("key name: ") + QString(key_.name().c_str()));
 
             XUngrabKeyboard(event->xkey.display, CurrentTime);
-
+        }
+        else if(event->type == KeyRelease && isGrabbing_)
+        {
             isGrabbing_ = false;
         }
     }
@@ -84,7 +86,7 @@ bool Grabber::winEvent(MSG* message, long* result)
         case WM_KEYUP:
         case WM_SYSKEYUP:
             if(isGrabbing_ == false) return false;
-            key_ = wc::Key(message);
+            key_ = FakeInput::Key(message);
             sender_->setKey(key_);
 
             keyName_->setText(QString("key name: ") + QString(key_.name().c_str()));

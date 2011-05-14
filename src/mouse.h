@@ -9,7 +9,7 @@
     #include <windows.h>
 #endif
 
-namespace wc
+namespace FakeInput
 {
     /** Represents mouse device.
      *

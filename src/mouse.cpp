@@ -6,7 +6,7 @@
 
 #include "display_unix.h"
 
-namespace wc
+namespace FakeInput
 {
     int Mouse::pressedButtons_ = 0;
 

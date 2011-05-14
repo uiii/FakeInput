@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-namespace wc
+namespace FakeInput
 {
 
 #ifdef UNIX

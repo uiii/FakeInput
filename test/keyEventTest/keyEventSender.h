@@ -13,7 +13,7 @@ public:
     Sender();
     virtual ~Sender();
 
-    void setKey(wc::Key key);
+    void setKey(FakeInput::Key key);
 
 #ifdef WIN32
     bool winEvent(MSG* message, long* result);
@@ -30,7 +30,7 @@ private:
     HWND focusWindow_;
 #endif
 
-    wc::Key key_;
+    FakeInput::Key key_;
 };
 
 #endif

@@ -9,7 +9,7 @@
 
 #include "key.h"
 
-namespace wc
+namespace FakeInput
 {
     /** Represents keyboard device.
      *

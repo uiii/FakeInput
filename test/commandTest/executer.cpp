@@ -33,5 +33,5 @@ Executer::~Executer()
 
 void Executer::runCommand()
 { 
-    wc::Command::run(cmd_->text().toAscii().data());
+    FakeInput::Command::run(cmd_->text().toAscii().data());
 }

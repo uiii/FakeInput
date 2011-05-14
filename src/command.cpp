@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-namespace wc
+namespace FakeInput
 {
     void Command::run(const std::string& cmd)
     {

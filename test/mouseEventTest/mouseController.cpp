@@ -12,7 +12,7 @@
 
 #include "mouse.h"
 
-using wc::Mouse;
+using FakeInput::Mouse;
 
 MouseController::MouseController():
     QDialog(0)
@@ -65,22 +65,22 @@ void MouseController::keyPressEvent(QKeyEvent* event)
     switch(event->key())
     {
         case Qt::Key_Left:
-            wc::Mouse::move(-5, 0);
+            FakeInput::Mouse::move(-5, 0);
             break;
         case Qt::Key_Right:
-            wc::Mouse::move(5, 0);
+            FakeInput::Mouse::move(5, 0);
             break;
         case Qt::Key_Up:
-            wc::Mouse::move(0, -5);
+            FakeInput::Mouse::move(0, -5);
             break;
         case Qt::Key_Down:
-            wc::Mouse::move(0, 5);
+            FakeInput::Mouse::move(0, 5);
             break;
         case Qt::Key_X:
-            wc::Mouse::pressButton(Mouse::LEFT);
+            FakeInput::Mouse::pressButton(Mouse::LEFT);
             break;
         case Qt::Key_C:
-            wc::Mouse::pressButton(Mouse::RIGHT);
+            FakeInput::Mouse::pressButton(Mouse::RIGHT);
             break;
         default:
             break;
@@ -92,10 +92,10 @@ void MouseController::keyReleaseEvent(QKeyEvent* event)
     switch(event->key())
     {
         case Qt::Key_X:
-            wc::Mouse::releaseButton(Mouse::LEFT);
+            FakeInput::Mouse::releaseButton(Mouse::LEFT);
             break;
         case Qt::Key_C:
-            wc::Mouse::releaseButton(Mouse::RIGHT);
+            FakeInput::Mouse::releaseButton(Mouse::RIGHT);
             break;
         default:
             break;
@@ -109,7 +109,7 @@ void MouseController::setMousePos()
         int x = xPos_->text().toInt();
         int y = yPos_->text().toInt();
 
-        wc::Mouse::moveTo(x, y);
+        FakeInput::Mouse::moveTo(x, y);
     }
 }
 
@@ -118,8 +118,8 @@ bool MouseController::x11Event(XEvent* event)
 {
     if(event->type == FocusOut)
     {
-        wc::Mouse::releaseButton(Mouse::LEFT);
-        wc::Mouse::releaseButton(Mouse::RIGHT);
+        FakeInput::Mouse::releaseButton(Mouse::LEFT);
+        FakeInput::Mouse::releaseButton(Mouse::RIGHT);
     }
 
     return false;
@@ -131,12 +131,12 @@ bool MouseController::winEvent(MSG* message, long* result)
     {
         if((Mouse::pressedButtons() & Mouse::LEFT) != 0)
         {
-            wc::Mouse::releaseButton(Mouse::LEFT);
+            FakeInput::Mouse::releaseButton(Mouse::LEFT);
         }
 
         if((Mouse::pressedButtons() & Mouse::RIGHT) != 0)
         {
-            wc::Mouse::releaseButton(Mouse::RIGHT);
+            FakeInput::Mouse::releaseButton(Mouse::RIGHT);
         }
     }
 
