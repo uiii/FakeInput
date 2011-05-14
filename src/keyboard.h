@@ -44,10 +44,6 @@ namespace wc
          *      If yes, events will be send immediately.
          */
         static void sendKeyEvent_(Key key, bool isPress, bool flush);
-
-#ifdef UNIX
-        static Display* display_;
-#endif
     };
 }
 

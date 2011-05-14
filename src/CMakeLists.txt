@@ -3,6 +3,7 @@ set(SRCS
     keyboard.cpp
     mouse.cpp
     command.cpp
+    display_unix.cpp
 )
 
 if(${UNIX})

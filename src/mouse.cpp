@@ -4,19 +4,17 @@
     #include <X11/extensions/XTest.h>
 #endif
 
+#include "display_unix.h"
+
 namespace wc
 {
     int Mouse::pressedButtons_ = 0;
 
-#ifdef UNIX
-    Display* Mouse::display_ = XOpenDisplay(0);
-#endif
-
     void Mouse::move(int x, int y)
     {
 #ifdef UNIX
-        XTestFakeRelativeMotionEvent(display_, x, y, CurrentTime);
-        XFlush(display_);
+        XTestFakeRelativeMotionEvent(display(), x, y, CurrentTime);
+        XFlush(display());
 #elif WIN32
         INPUT input;
         ZeroMemory(&input, sizeof(INPUT));
@@ -31,8 +29,8 @@ namespace wc
     void Mouse::moveTo(int x, int y)
     {
 #ifdef UNIX
-        XTestFakeMotionEvent(display_, -1, x, y, CurrentTime);
-        XFlush(display_);
+        XTestFakeMotionEvent(display(), -1, x, y, CurrentTime);
+        XFlush(display());
 #elif WIN32
         double screenWidth = GetSystemMetrics(SM_CXSCREEN) - 1; 
         double screenHeight = GetSystemMetrics(SM_CYSCREEN) - 1; 
@@ -55,8 +53,8 @@ namespace wc
 
 #ifdef UNIX
         int xButton = buttonToX11Button_(button);
-        XTestFakeButtonEvent(display_, xButton, true, CurrentTime);
-        XFlush(display_);
+        XTestFakeButtonEvent(display(), xButton, true, CurrentTime);
+        XFlush(display());
 #elif WIN32
         INPUT input = buttonToWinEvent_(button, true);
         SendInput(1, &input, sizeof(INPUT));
@@ -69,8 +67,8 @@ namespace wc
 
 #ifdef UNIX
         int xButton = buttonToX11Button_(button);
-        XTestFakeButtonEvent(display_, xButton, false, CurrentTime);
-        XFlush(display_);
+        XTestFakeButtonEvent(display(), xButton, false, CurrentTime);
+        XFlush(display());
 #elif WIN32
         INPUT input = buttonToWinEvent_(button, false);
         SendInput(1, &input, sizeof(INPUT));

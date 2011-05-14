@@ -5,14 +5,12 @@
     #include <X11/extensions/XTest.h>
 #endif
 
+#include "display_unix.h"
+
 #include <iostream>
 
 namespace wc
 {
-#ifdef UNIX
-    Display* Keyboard::display_ = XOpenDisplay(0);
-#endif
-
     void Keyboard::pressKey(wc::Key key)
     {
         sendKeyEvent_(key, true, true);
@@ -32,11 +30,11 @@ namespace wc
         }
         else
         {
-            XTestFakeKeyEvent(display_, key.code(), isPress, CurrentTime);
+            XTestFakeKeyEvent(display(), key.code(), isPress, CurrentTime);
          
             if(flush)
             {
-                XFlush(display_);
+                XFlush(display());
             }
         }
 #elif WIN32

@@ -72,8 +72,6 @@ namespace wc
 
 #ifdef UNIX
         static int buttonToX11Button_(Button button);
-
-        static Display* display_;
 #endif
 
 #ifdef WIN32
