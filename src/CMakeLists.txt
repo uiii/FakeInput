@@ -27,12 +27,12 @@ if(${UNIX})
     )
 endif(${UNIX})
 
-if(${WIN})
+if(${WIN32})
     set(SRCS
         ${SRCS_COMMON}
         ${SRCS_WIN}
     )
-endif(${WIN})
+endif(${WIN32})
 
 if(${TEST_APP})
     set(LIBS ${QT_LIBRARIES} ${LIBS})

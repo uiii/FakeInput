@@ -13,6 +13,14 @@
 
 #ifdef UNIX
     #include <X11/Xlib.h>
+#elif WIN32
+    #include <windows.h>
+    #define IS_LEFT_PRESSED \
+        ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && ! GetSystemMetrics(SM_SWAPBUTTON)) \
+        || ((GetAsyncKeyState(VK_RBUTTON) & 0x8000) && GetSystemMetrics(SM_SWAPBUTTON))
+    #define IS_RIGHT_PRESSED \
+        ((GetAsyncKeyState(VK_RBUTTON) & 0x8000) && ! GetSystemMetrics(SM_SWAPBUTTON)) \
+        || ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && GetSystemMetrics(SM_SWAPBUTTON))
 #endif
 
 #include "mouse.h"
@@ -48,6 +56,7 @@ MouseController::MouseController():
     setMousePosButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
     QSlider* slider = new QSlider(Qt::Vertical, this);
+    slider->setFocusPolicy(Qt::NoFocus);
     slider->setValue(50);
 
     QGridLayout* grid = new QGridLayout();
@@ -146,13 +155,14 @@ bool MouseController::winEvent(MSG* message, long* result)
 {
     if(message->message == WM_KILLFOCUS)
     {
-        if((Mouse::pressedButtons() & Mouse::LEFT) != 0)
+        if(IS_LEFT_PRESSED)
         {
+            std::cout << "left" << std::endl;
             FakeInput::Mouse::releaseButton(Mouse::LEFT);
         }
-
-        if((Mouse::pressedButtons() & Mouse::RIGHT) != 0)
+        else if(IS_RIGHT_PRESSED)
         {
+            std::cout << "right" << std::endl;
             FakeInput::Mouse::releaseButton(Mouse::RIGHT);
         }
     }

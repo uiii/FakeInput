@@ -4,13 +4,16 @@
 
 #include "mapper.h"
 
+#define INIT_INPUT(var) \
+    INPUT var; \
+    ZeroMemory(&var, sizeof(INPUT)); \
+    var.type = INPUT_MOUSE;
+
 namespace FakeInput
 {
     void Mouse::move(int x, int y)
     {
-        INPUT input;
-        ZeroMemory(&input, sizeof(INPUT));
-        input.type = INPUT_MOUSE;
+        INIT_INPUT(input);
         input.mi.dx = x;
         input.mi.dy = y;
         input.mi.dwFlags = MOUSEEVENTF_MOVE;
@@ -24,9 +27,7 @@ namespace FakeInput
         double fx = x * (65535.0f / screenWidth);
         double fy = y * (65535.0f / screenHeight);
 
-        INPUT input;
-        ZeroMemory(&input, sizeof(INPUT));
-        input.type = INPUT_MOUSE;
+        INIT_INPUT(input);
         input.mi.dx = (LONG) fx;
         input.mi.dy = (LONG) fy;
         input.mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
@@ -35,20 +36,16 @@ namespace FakeInput
 
     void Mouse::pressButton(Mouse::Button button)
     {
-        INPUT input;
-        ZeroMemory(&input, sizeof(INPUT));
-        input.type = INPUT_MOUSE;
-        input.mi.dwFlags = translateButton(button);
+        INIT_INPUT(input);
+        input.mi.dwFlags = translateMouseButton(button);
 
         SendInput(1, &input, sizeof(INPUT));
     }
 
     void Mouse::releaseButton(Mouse::Button button)
     {
-        INPUT input;
-        ZeroMemory(&input, sizeof(INPUT));
-        input.type = INPUT_MOUSE;
-        input.mi.dwFlags = translateButton(button) << 1;
+        INIT_INPUT(input);
+        input.mi.dwFlags = translateMouseButton(button) << 1;
 
         SendInput(1, &input, sizeof(INPUT));
     }
