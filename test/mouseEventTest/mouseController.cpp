@@ -5,10 +5,15 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QSlider>
 
 #include <iostream>
 
 #include "clickButton.h"
+
+#ifdef UNIX
+    #include <X11/Xlib.h>
+#endif
 
 #include "mouse.h"
 
@@ -42,17 +47,23 @@ MouseController::MouseController():
     setMousePosButton->setFocusPolicy(Qt::NoFocus);
     setMousePosButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
+    QSlider* slider = new QSlider(Qt::Vertical, this);
+    slider->setValue(50);
+
     QGridLayout* grid = new QGridLayout();
     grid->addWidget(xLabel, 0, 0);
     grid->addWidget(xPos_, 0, 1);
     grid->addWidget(yLabel, 1, 0);
     grid->addWidget(yPos_, 1, 1);
     grid->addWidget(setMousePosButton, 0, 2, 2, 1);
+    grid->addWidget(clickButton, 2, 0, 1, 3);
+    grid->addWidget(quitButton, 3, 0, 1, 3);
+    grid->addWidget(slider, 0, 3, 4, 1);
 
     vbox->addWidget(instructions);
     vbox->addLayout(grid);
-    vbox->addWidget(clickButton);
-    vbox->addWidget(quitButton);
+    //vbox->addWidget(clickButton);
+    //vbox->addWidget(quitButton);
 
     setLayout(vbox);
 
@@ -81,6 +92,12 @@ void MouseController::keyPressEvent(QKeyEvent* event)
             break;
         case Qt::Key_C:
             FakeInput::Mouse::pressButton(Mouse::RIGHT);
+            break;
+        case Qt::Key_Q:
+            FakeInput::Mouse::wheelUp();
+            break;
+        case Qt::Key_A:
+            FakeInput::Mouse::wheelDown();
             break;
         default:
             break;

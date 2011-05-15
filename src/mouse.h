@@ -3,12 +3,6 @@
 
 #include "config.h"
 
-#ifdef UNIX
-    #include <X11/Xlib.h>
-#elif WIN32
-    #include <windows.h>
-#endif
-
 namespace FakeInput
 {
     /** Represents mouse device.
@@ -19,6 +13,13 @@ namespace FakeInput
     class Mouse
     {
     public:
+        /** Mouse button which can be pressed or released */
+        enum Button {
+            LEFT = 0,
+            MIDDLE = 1,
+            RIGHT = 2
+        };
+
         /** Moves mouse cursor in direction.
          *
          * @param xDirection
@@ -37,15 +38,6 @@ namespace FakeInput
          */
         static void moveTo(int x, int y);
 
-        /** Mouse button which can be pressed or released */
-        enum Button {
-            LEFT = 1,
-            MIDDLE = 2,
-            RIGHT = 4,
-            WHEEL_UP = 8,
-            WHEEL_DOWN = 16
-        };
-
         /** Simulates mouse button press.
          *
          * @param button
@@ -60,23 +52,11 @@ namespace FakeInput
          */
         static void releaseButton(Button button);
 
-        /** Returns bit map of pressed buttons
-         *
-         * @returns
-         *     Bit map of pressed buttons
-         */
-        static int pressedButtons();
+        /** Simulates wheel up move */
+        static void wheelUp();
 
-    private:
-        static int pressedButtons_;
-
-#ifdef UNIX
-        static int buttonToX11Button_(Button button);
-#endif
-
-#ifdef WIN32
-        static INPUT buttonToWinEvent_(Button button, bool press);
-#endif
+        /** Simulates wheel up down */
+        static void wheelDown();
     };
 }
 

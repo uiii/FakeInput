@@ -1,17 +1,38 @@
-set(SRCS
+set(SRCS_COMMON
     key.cpp
     keyboard.cpp
-    mouse.cpp
     command.cpp
+)
+
+set(SRCS_UNIX
     display_unix.cpp
+    mouse_unix.cpp
+    mapper_unix.cpp
+)
+
+set(SRCS_WIN
+    mouse_win.cpp
+    mapper_win.cpp
 )
 
 if(${UNIX})
+    set(SRCS
+        ${SRCS_COMMON}
+        ${SRCS_UNIX}
+    )
+
     set(LIBS
         ${X11_LIBRARIES}
         ${XTest_LIBRARIES}
     )
 endif(${UNIX})
+
+if(${WIN})
+    set(SRCS
+        ${SRCS_COMMON}
+        ${SRCS_WIN}
+    )
+endif(${WIN})
 
 if(${TEST_APP})
     set(LIBS ${QT_LIBRARIES} ${LIBS})

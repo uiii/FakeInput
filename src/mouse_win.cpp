@@ -1,0 +1,73 @@
+#include "mouse.h"
+
+#include <windows.h>
+
+#include "mapper.h"
+
+namespace FakeInput
+{
+    void Mouse::move(int x, int y)
+    {
+        INPUT input;
+        ZeroMemory(&input, sizeof(INPUT));
+        input.type = INPUT_MOUSE;
+        input.mi.dx = x;
+        input.mi.dy = y;
+        input.mi.dwFlags = MOUSEEVENTF_MOVE;
+        SendInput(1, &input, sizeof(INPUT));
+    }
+
+    void Mouse::moveTo(int x, int y)
+    {
+        double screenWidth = GetSystemMetrics(SM_CXSCREEN) - 1; 
+        double screenHeight = GetSystemMetrics(SM_CYSCREEN) - 1; 
+        double fx = x * (65535.0f / screenWidth);
+        double fy = y * (65535.0f / screenHeight);
+
+        INPUT input;
+        ZeroMemory(&input, sizeof(INPUT));
+        input.type = INPUT_MOUSE;
+        input.mi.dx = (LONG) fx;
+        input.mi.dy = (LONG) fy;
+        input.mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
+        SendInput(1, &input, sizeof(INPUT));
+    }
+
+    void Mouse::pressButton(Mouse::Button button)
+    {
+        INPUT input;
+        ZeroMemory(&input, sizeof(INPUT));
+        input.type = INPUT_MOUSE;
+        input.mi.dwFlags = translateButton(button);
+
+        SendInput(1, &input, sizeof(INPUT));
+    }
+
+    void Mouse::releaseButton(Mouse::Button button)
+    {
+        INPUT input;
+        ZeroMemory(&input, sizeof(INPUT));
+        input.type = INPUT_MOUSE;
+        input.mi.dwFlags = translateButton(button) << 1;
+
+        SendInput(1, &input, sizeof(INPUT));
+    }
+
+    void Mouse::wheelUp()
+    {
+        INIT_INPUT(input);
+        input.mi.dwFlags = MOUSEEVENTF_WHEEL;
+        input.mi.mouseData = WHEEL_DELTA;
+
+        SendInput(1, &input, sizeof(INPUT));
+    }
+
+    void Mouse::wheelDown()
+    {
+        INIT_INPUT(input);
+        input.mi.dwFlags = MOUSEEVENTF_WHEEL;
+        input.mi.mouseData = -WHEEL_DELTA;
+
+        SendInput(1, &input, sizeof(INPUT));
+    }
+}
