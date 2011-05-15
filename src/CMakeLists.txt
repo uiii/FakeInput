@@ -1,18 +1,19 @@
 set(SRCS_COMMON
     key.cpp
     keyboard.cpp
-    command.cpp
 )
 
 set(SRCS_UNIX
     display_unix.cpp
     mouse_unix.cpp
     mapper_unix.cpp
+    command_unix.cpp
 )
 
 set(SRCS_WIN
     mouse_win.cpp
     mapper_win.cpp
+    command_win.cpp
 )
 
 if(${UNIX})
