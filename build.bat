@@ -9,7 +9,7 @@ if not exist build (mkdir build)
 cd build
 
 cls
-cmake ../ -DTEST_APP=ON -DCMAKE_BUILD_TYPE=Debug && msbuild FakeInput.sln /p:Configuration=Release
+cmake ../ -DTEST_APP=ON -DCMAKE_BUILD_TYPE=Debug -DDOC=ON && msbuild FakeInput.sln /p:Configuration=Release
 
 cd ..
 
