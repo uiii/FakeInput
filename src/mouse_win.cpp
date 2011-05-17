@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include "mapper.h"
+#include "types.h"
 
 #define INIT_INPUT(var) \
     INPUT var; \
@@ -34,7 +35,7 @@ namespace FakeInput
         SendInput(1, &input, sizeof(INPUT));
     }
 
-    void Mouse::pressButton(Mouse::Button button)
+    void Mouse::pressButton(MouseButton button)
     {
         INIT_INPUT(input);
         input.mi.dwFlags = translateMouseButton(button);
@@ -42,7 +43,7 @@ namespace FakeInput
         SendInput(1, &input, sizeof(INPUT));
     }
 
-    void Mouse::releaseButton(Mouse::Button button)
+    void Mouse::releaseButton(MouseButton button)
     {
         INIT_INPUT(input);
         input.mi.dwFlags = translateMouseButton(button) << 1;

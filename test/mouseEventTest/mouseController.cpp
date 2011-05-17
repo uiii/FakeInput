@@ -158,12 +158,12 @@ bool MouseController::winEvent(MSG* message, long* result)
         if(IS_LEFT_PRESSED)
         {
             std::cout << "left" << std::endl;
-            FakeInput::Mouse::releaseButton(Mouse::LEFT);
+            FakeInput::Mouse::releaseButton(FakeInput::Mouse_Left);
         }
         else if(IS_RIGHT_PRESSED)
         {
             std::cout << "right" << std::endl;
-            FakeInput::Mouse::releaseButton(Mouse::RIGHT);
+            FakeInput::Mouse::releaseButton(FakeInput::Mouse_Right);
         }
     }
 

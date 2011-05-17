@@ -9,7 +9,7 @@ namespace FakeInput
 {
     Key_win::Key_win()
     {
-        virtualKey = 0;
+        virtualKey_ = 0;
     }
 
     Key_win::Key_win(KeyType type)
@@ -22,7 +22,7 @@ namespace FakeInput
         }
         else
         {
-            virtualKey_ = translateKey(type);
+            virtualKey_ = (WORD) translateKey(type);
 
             Key_win tmpKey(virtualKey_);
             code_ = tmpKey.code_;
