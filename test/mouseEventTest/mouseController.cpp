@@ -97,10 +97,10 @@ void MouseController::keyPressEvent(QKeyEvent* event)
             FakeInput::Mouse::move(0, 5);
             break;
         case Qt::Key_X:
-            FakeInput::Mouse::pressButton(Mouse::LEFT);
+            FakeInput::Mouse::pressButton(FakeInput::Mouse_Left);
             break;
         case Qt::Key_C:
-            FakeInput::Mouse::pressButton(Mouse::RIGHT);
+            FakeInput::Mouse::pressButton(FakeInput::Mouse_Right);
             break;
         case Qt::Key_Q:
             FakeInput::Mouse::wheelUp();
@@ -118,10 +118,10 @@ void MouseController::keyReleaseEvent(QKeyEvent* event)
     switch(event->key())
     {
         case Qt::Key_X:
-            FakeInput::Mouse::releaseButton(Mouse::LEFT);
+            FakeInput::Mouse::releaseButton(FakeInput::Mouse_Left);
             break;
         case Qt::Key_C:
-            FakeInput::Mouse::releaseButton(Mouse::RIGHT);
+            FakeInput::Mouse::releaseButton(FakeInput::Mouse_Right);
             break;
         default:
             break;
@@ -144,8 +144,8 @@ bool MouseController::x11Event(XEvent* event)
 {
     if(event->type == FocusOut)
     {
-        FakeInput::Mouse::releaseButton(Mouse::LEFT);
-        FakeInput::Mouse::releaseButton(Mouse::RIGHT);
+        FakeInput::Mouse::releaseButton(FakeInput::Mouse_Left);
+        FakeInput::Mouse::releaseButton(FakeInput::Mouse_Right);
     }
 
     return false;

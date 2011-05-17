@@ -3,15 +3,16 @@
 
 #include "config.h"
 
+#include <X11/Xlib.h>
+
 namespace FakeInput
 {
-
-#ifdef UNIX
-    #include <X11/Xlib.h>
-
+    /** Get connection to the X server
+     *
+     * @warning @image html tux.png
+     *    Unix-like platform only
+     */
     Display* display();
-#endif
-
 }
 
 #endif

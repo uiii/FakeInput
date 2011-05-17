@@ -1,44 +1,36 @@
-#include "key.h"
+#include "key_win.h"
 
 #include <stdexcept>
 #include <iostream>
 
+#include "mapper.h"
+
 namespace FakeInput
 {
-    Key::Key()
+    Key_win::Key_win()
     {
-        code_ = 0;
-        name_ = "<no key>";
-
-#ifdef UNIX
-        keysym_ = 0;
-#endif
+        virtualKey = 0;
     }
 
-#ifdef UNIX
-    Key::Key(XEvent* event)
+    Key_win::Key_win(KeyType type)
     {
-        if(event->type != KeyPress && event->type != KeyRelease)
-            throw std::logic_error("Cannot get key from non-key event");
+        if(type == Key_NoKey)
+        {
+            virtualKey_ = 0;
+            code_ = 0;
+            name_ = "<no key>";
+        }
+        else
+        {
+            virtualKey_ = translateKey(type);
 
-        code_ = event->xkey.keycode;
-        keysym_ = XKeycodeToKeysym(event->xkey.display, code_, 0);
-        name_ = XKeysymToString(keysym_);
+            Key_win tmpKey(virtualKey_);
+            code_ = tmpKey.code_;
+            name_ = tmpKey.name_;
+        }
     }
 
-    Key::Key(const std::string& keyName)
-    {
-        KeySym keysym = XStringToKeysym(keyName.c_str());
-        if(keysym == NoSymbol) throw std::logic_error("Bad key name");
-
-        code_ = XKeysymToKeycode(XOpenDisplay(0), keysym);
-        keysym_ = keysym;
-        name_ = XKeysymToString(keysym);
-    }
-#endif
-
-#ifdef WIN32
-    Key::Key(MSG* message)
+    Key_win::Key_win(MSG* message)
     {
         switch(message->message)
         {
@@ -53,12 +45,12 @@ namespace FakeInput
             break;
         }
 
-        Key tmpKey(virtualKey_);
+        Key_win tmpKey(virtualKey_);
         code_ = tmpKey.code_;
         name_ = tmpKey.name_;
     }
 
-    Key::Key(WORD virtualKey):
+    Key_win::Key_win(WORD virtualKey):
         virtualKey_(virtualKey)
     {
         code_ = MapVirtualKey(virtualKey, MAPVK_VK_TO_VSC);
@@ -88,27 +80,9 @@ namespace FakeInput
             name_ = "<unknown key>";
         }
     }
-#endif
 
-    unsigned int Key::code() const
-    {
-        return code_;
-    }
-    
-#ifdef UNIX
-    KeySym Key::keysym() const
-    {
-        return keysym_;
-    }
-#elif WIN32
-    WORD Key::virtualKey() const
+    WORD Key_win::virtualKey() const
     {
         return virtualKey_;
-    }
-#endif
-    
-    const std::string& Key::name() const
-    {
-        return name_;
     }
 }

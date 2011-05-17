@@ -21,14 +21,14 @@ namespace FakeInput
         XFlush(display());
     }
 
-    void Mouse::pressButton(Mouse::Button button)
+    void Mouse::pressButton(MouseButton button)
     {
         int xButton = translateMouseButton(button);
         XTestFakeButtonEvent(display(), xButton, true, CurrentTime);
         XFlush(display());
     }
 
-    void Mouse::releaseButton(Mouse::Button button)
+    void Mouse::releaseButton(MouseButton button)
     {
         int xButton = translateMouseButton(button);
         XTestFakeButtonEvent(display(), xButton, false, CurrentTime);

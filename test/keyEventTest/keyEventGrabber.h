@@ -3,6 +3,12 @@
 
 #include <QWidget>
 
+#include <QApplication>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QComboBox>
+
 #include "key.h"
 
 class QLabel;
@@ -10,10 +16,13 @@ class QPushButton;
 
 class Sender;
 
+using FakeInput::Key;
+
 class Grabber : public QWidget
 {
     Q_OBJECT
 
+    Q_ENUMS(FakeInput::KeyType);
 public:
     Grabber();
     virtual ~Grabber();
@@ -26,6 +35,7 @@ public:
 
 public slots:
     void grabKeyEvent();
+    void keySelected(int index);
 
 private:
 #ifdef UNIX
@@ -39,9 +49,11 @@ private:
     QLabel* keyName_;
 
     QPushButton* grabButton_;
+    QComboBox* keySelector_;
+
     QPushButton* sendButton_;
 
-    FakeInput::Key key_;
+    Key key_;
 
     Sender* sender_;
 };

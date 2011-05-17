@@ -2,6 +2,7 @@
 #define FI_MOUSE_H
 
 #include "config.h"
+#include "types.h"
 
 namespace FakeInput
 {
@@ -13,13 +14,6 @@ namespace FakeInput
     class Mouse
     {
     public:
-        /** Mouse button which can be pressed or released */
-        enum Button {
-            LEFT = 0,
-            MIDDLE = 1,
-            RIGHT = 2
-        };
-
         /** Moves mouse cursor in direction.
          *
          * @param xDirection
@@ -41,16 +35,16 @@ namespace FakeInput
         /** Simulates mouse button press.
          *
          * @param button
-         *     Button to be pressed
+         *     MouseButton to be pressed
          */
-        static void pressButton(Button button);
+        static void pressButton(MouseButton button);
 
         /** Simulates mouse button release.
          *
          * @param button
-         *     Button to be released
+         *     MouseButton to be released
          */
-        static void releaseButton(Button button);
+        static void releaseButton(MouseButton button);
 
         /** Simulates wheel up move */
         static void wheelUp();

@@ -3,10 +3,6 @@
 
 #include "config.h"
 
-#ifdef UNIX
-    #include <X11/Xlib.h>
-#endif
-
 #include "key.h"
 
 namespace FakeInput
@@ -39,11 +35,8 @@ namespace FakeInput
          *      Key object representing real key to be pressed.
          * @param isPress
          *      Whether event is press or release.
-         * @param flush
-         *      Whether to flush output buffer.
-         *      If yes, events will be send immediately.
          */
-        static void sendKeyEvent_(Key key, bool isPress, bool flush);
+        static void sendKeyEvent_(Key key, bool isPress);        
     };
 }
 
