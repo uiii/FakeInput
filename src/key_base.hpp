@@ -17,14 +17,14 @@ namespace FakeInput
          * @returns
          *     Device dependend code of the key.
          */
-        unsigned int code() const;
+        virtual unsigned int code() const;
 
         /** Gives the name of the key.
          *
          * @returns
          *     The name of the key.
          */
-        const std::string& name() const;
+        virtual const std::string& name() const;
 
     protected:
         /** Key_base constructor.
