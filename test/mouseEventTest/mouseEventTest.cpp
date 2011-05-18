@@ -1,6 +1,6 @@
 #include <QApplication>
 
-#include "mouseController.h"
+#include "mouseController.hpp"
 
 int main(int argc, char* argv[])
 {

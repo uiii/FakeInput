@@ -1,5 +1,5 @@
-#ifndef TEST_EXEC
-#define TEST_EXEC
+#ifndef TEST_EXEC_HPP
+#define TEST_EXEC_HPP
 
 #include <QWidget>
 

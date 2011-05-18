@@ -1,5 +1,5 @@
-#ifndef WC_CONFIG_H
-#define WC_CONFIG_H
+#ifndef WC_CONFIG_HPP
+#define WC_CONFIG_HPP
 
 #cmakedefine TEST_APP
 

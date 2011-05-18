@@ -1,14 +1,14 @@
-#ifndef FI_KEY_UNIX_H
-#define FI_KEY_UNIX_H
+#ifndef FI_KEY_UNIX_HPP
+#define FI_KEY_UNIX_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <X11/Xlib.h>
 
 #include <string>
 
-#include "key_base.h"
-#include "types.h"
+#include "key_base.hpp"
+#include "types.hpp"
 
 namespace FakeInput
 {

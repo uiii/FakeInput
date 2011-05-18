@@ -1,4 +1,4 @@
-#include "executer.h"
+#include "executer.hpp"
 
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -7,7 +7,7 @@
 #include <string>
 #include <iostream>
 
-#include "command.h"
+#include "command.hpp"
 
 Executer::Executer():
     QWidget(0)

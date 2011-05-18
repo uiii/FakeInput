@@ -1,5 +1,5 @@
-#ifndef TEST_GRABBER_H
-#define TEST_GRABBER_H
+#ifndef TEST_GRABBER_HPP
+#define TEST_GRABBER_HPP
 
 #include <QWidget>
 
@@ -9,7 +9,7 @@
 #include <QVBoxLayout>
 #include <QComboBox>
 
-#include "key.h"
+#include "key.hpp"
 
 class QLabel;
 class QPushButton;

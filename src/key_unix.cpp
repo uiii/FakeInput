@@ -1,10 +1,10 @@
-#include "key_unix.h"
+#include "key_unix.hpp"
 
 #include <stdexcept>
 #include <iostream>
 
-#include "display_unix.h"
-#include "mapper.h"
+#include "display_unix.hpp"
+#include "mapper.hpp"
 
 namespace FakeInput
 {

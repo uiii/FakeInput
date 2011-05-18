@@ -1,4 +1,4 @@
-#include "command.h"
+#include "command.hpp"
 
 #include <stdlib.h>
 #include <iostream>

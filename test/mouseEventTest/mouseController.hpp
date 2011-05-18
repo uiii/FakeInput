@@ -1,7 +1,7 @@
-#ifndef TEST_MOUSECONTROLLER_H
-#define TEST_MOUSECONTROLLER_H
+#ifndef TEST_MOUSECONTROLLER_HPP
+#define TEST_MOUSECONTROLLER_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <QDialog>
 #include <QSpinBox>

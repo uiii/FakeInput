@@ -1,5 +1,5 @@
-#ifndef TEST_CLICKBUTTON_H
-#define TEST_CLICKBUTTON_H
+#ifndef TEST_CLICKBUTTON_HPP
+#define TEST_CLICKBUTTON_HPP
 
 #include <QWidget>
 #include <QPushButton>

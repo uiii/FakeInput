@@ -1,9 +1,9 @@
-#include "mouse.h"
+#include "mouse.hpp"
 
 #include <windows.h>
 
-#include "mapper.h"
-#include "types.h"
+#include "mapper.hpp"
+#include "types.hpp"
 
 #define INIT_INPUT(var) \
     INPUT var; \

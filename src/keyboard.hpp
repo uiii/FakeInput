@@ -1,9 +1,9 @@
-#ifndef FI_KEYBOARD_H
-#define FI_KEYBOARD_H
+#ifndef FI_KEYBOARD_HPP
+#define FI_KEYBOARD_HPP
 
-#include "config.h"
+#include "config.hpp"
 
-#include "key.h"
+#include "key.hpp"
 
 namespace FakeInput
 {

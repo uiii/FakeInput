@@ -1,9 +1,9 @@
-#ifndef TEST_SENDER
-#define TEST_SENDER
+#ifndef TEST_SENDER_HPP
+#define TEST_SENDER_HPP
 
 #include <QDialog>
 
-#include "key.h"
+#include "key.hpp"
 
 class Sender : public QWidget
 {

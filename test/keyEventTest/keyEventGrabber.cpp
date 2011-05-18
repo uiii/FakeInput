@@ -1,8 +1,8 @@
-#include "keyEventGrabber.h"
+#include "keyEventGrabber.hpp"
 
 #include <iostream>
 
-#include "keyEventSender.h"
+#include "keyEventSender.hpp"
 
 using FakeInput::Key;
 

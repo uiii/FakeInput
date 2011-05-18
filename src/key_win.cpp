@@ -1,9 +1,9 @@
-#include "key_win.h"
+#include "key_win.hpp"
 
 #include <stdexcept>
 #include <iostream>
 
-#include "mapper.h"
+#include "mapper.hpp"
 
 namespace FakeInput
 {

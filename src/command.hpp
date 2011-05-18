@@ -1,7 +1,7 @@
-#ifndef FI_COMMAND_H
-#define FI_COMMAND_H
+#ifndef FI_COMMAND_HPP
+#define FI_COMMAND_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <string>
 

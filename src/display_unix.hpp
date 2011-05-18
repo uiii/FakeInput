@@ -1,7 +1,7 @@
-#ifndef FI_DISPLAY_UNIX_H
-#define FI_DISPLAY_UNIX_H
+#ifndef FI_DISPLAY_UNIX_HPP
+#define FI_DISPLAY_UNIX_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <X11/Xlib.h>
 

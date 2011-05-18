@@ -1,4 +1,4 @@
-#include "clickButton.h"
+#include "clickButton.hpp"
 
 ClickButton::ClickButton(QWidget* parent):
     QPushButton("Click me!", parent)

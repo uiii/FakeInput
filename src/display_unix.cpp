@@ -1,4 +1,4 @@
-#include "display_unix.h"
+#include "display_unix.hpp"
 
 namespace FakeInput
 {

@@ -1,4 +1,4 @@
-#include "mouseController.h"
+#include "mouseController.hpp"
 
 #include <QApplication>
 #include <QVBoxLayout>
@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#include "clickButton.h"
+#include "clickButton.hpp"
 
 #ifdef UNIX
     #include <X11/Xlib.h>
@@ -23,7 +23,7 @@
         || ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && GetSystemMetrics(SM_SWAPBUTTON))
 #endif
 
-#include "mouse.h"
+#include "mouse.hpp"
 
 using FakeInput::Mouse;
 

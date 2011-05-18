@@ -1,11 +1,11 @@
-#include "mouse.h"
+#include "mouse.hpp"
 
 #include <X11/Xlib.h>
 #include <X11/extensions/XTest.h>
 
-#include "display_unix.h"
+#include "display_unix.hpp"
 
-#include "mapper.h"
+#include "mapper.hpp"
 
 namespace FakeInput
 {

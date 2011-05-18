@@ -1,8 +1,8 @@
-#ifndef FI_MAPPER_H
-#define FI_MAPPER_H
+#ifndef FI_MAPPER_HPP
+#define FI_MAPPER_HPP
 
-#include "mouse.h"
-#include "key.h"
+#include "mouse.hpp"
+#include "key.hpp"
 
 namespace FakeInput
 {

@@ -1,14 +1,14 @@
-#ifndef FI_KEY_WIN_H
-#define FI_KEY_WIN_H
+#ifndef FI_KEY_WIN_HPP
+#define FI_KEY_WIN_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <windows.h>
 
 #include <string>
 
-#include "key_base.h"
-#include "types.h"
+#include "key_base.hpp"
+#include "types.hpp"
 
 namespace FakeInput
 {

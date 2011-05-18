@@ -1,9 +1,9 @@
-#include "keyboard.h"
+#include "keyboard.hpp"
 
 #include <X11/Xlib.h>
 #include <X11/extensions/XTest.h>
 
-#include "display_unix.h"
+#include "display_unix.hpp"
 
 #include <iostream>
 

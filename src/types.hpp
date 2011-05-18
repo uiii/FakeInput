@@ -1,5 +1,5 @@
-#ifndef FI_TYPES_H
-#define FI_TYPES_H
+#ifndef FI_TYPES_HPP
+#define FI_TYPES_HPP
 
 namespace FakeInput
 {

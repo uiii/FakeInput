@@ -1,12 +1,12 @@
-#ifndef FI_KEY_H
-#define FI_KEY_H
+#ifndef FI_KEY_HPP
+#define FI_KEY_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #ifdef UNIX
-    #include "key_unix.h"
+    #include "key_unix.hpp"
 #elif WIN32
-    #include "key_win.h"
+    #include "key_win.hpp"
 #endif
 
 namespace FakeInput

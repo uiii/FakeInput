@@ -1,7 +1,7 @@
-#ifndef FI_KEY_BASE_H
-#define FI_KEY_BASE_H
+#ifndef FI_KEY_BASE_HPP
+#define FI_KEY_BASE_HPP
 
-#include "config.h"
+#include "config.hpp"
 
 #include <string>
 

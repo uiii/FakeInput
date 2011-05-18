@@ -1,10 +1,10 @@
-#include "keyEventSender.h"
+#include "keyEventSender.hpp"
 
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <iostream>
 
-#include "keyboard.h"
+#include "keyboard.hpp"
 
 Sender::Sender():
     QWidget(0, Qt::WindowStaysOnTopHint

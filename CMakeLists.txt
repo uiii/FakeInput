@@ -51,8 +51,8 @@ elseif(${DOC} AND (EXISTS ${CMAKE_HOME_DIRECTORY}/Doxyfile.in))
 endif(${DOC} AND (EXISTS ${CMAKE_HOME_DIRECTORY}/Doxyfile.in))
 
 configure_file(
-    ${CMAKE_HOME_DIRECTORY}/src/config.h.cmake
-    ${PROJECT_BINARY_DIR}/src/config.h
+    ${CMAKE_HOME_DIRECTORY}/src/config.hpp.cmake
+    ${PROJECT_BINARY_DIR}/src/config.hpp
 )
 
 include_directories(${PROJECT_BINARY_DIR}/src)

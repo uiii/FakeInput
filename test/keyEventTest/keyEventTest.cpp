@@ -1,6 +1,6 @@
 #include <QApplication>
 
-#include "keyEventGrabber.h"
+#include "keyEventGrabber.hpp"
 
 int main(int argc, char* argv[])
 {

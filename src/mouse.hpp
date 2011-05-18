@@ -1,8 +1,8 @@
-#ifndef FI_MOUSE_H
-#define FI_MOUSE_H
+#ifndef FI_MOUSE_HPP
+#define FI_MOUSE_HPP
 
-#include "config.h"
-#include "types.h"
+#include "config.hpp"
+#include "types.hpp"
 
 namespace FakeInput
 {
