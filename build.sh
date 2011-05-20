@@ -23,13 +23,11 @@ then
     fi
 fi
 
-if test -d ./build
+if [ "$rebuild" == "TRUE" ]
 then
-    if [ "$rebuild" == "TRUE" ]
-    then
-        rm -r ./build
-        mkdir ./build
-    fi
+    rm -r ./build
+    rm -r ./bin
+    rm -r ./doc
 fi
 
 mkdir ./build
