@@ -1,6 +1,11 @@
 set(SRCS_COMMON
     key_base.cpp
     keyboard.cpp
+    actions/actionsequence.cpp
+    actions/commandaction.cpp
+    actions/keyaction.cpp
+    actions/mouseaction.cpp
+    actions/waitaction.cpp
 )
 
 set(SRCS_UNIX
