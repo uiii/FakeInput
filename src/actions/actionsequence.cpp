@@ -1,5 +1,7 @@
 #include "actionsequence.hpp"
 
+#include <iostream>
+
 namespace FakeInput
 {
     ActionSequence::ActionSequence()

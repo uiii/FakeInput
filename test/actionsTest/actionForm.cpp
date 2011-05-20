@@ -143,7 +143,7 @@ QString ActionForm::addActionToSequence(FakeInput::ActionSequence& sequence)
 
             infoText = actionType_->currentText();
             infoText.append(": ");
-            infoText.append(QString::fromStdString(key.name()));
+            infoText.append(key.name().c_str());
             break;
         }
         case 1: {
@@ -190,7 +190,7 @@ QString ActionForm::addActionToSequence(FakeInput::ActionSequence& sequence)
             break;
         }
         case 4: {
-            sequence.runCommand(command_->text().toStdString());
+            sequence.runCommand(command_->text().toAscii().data());
 
             infoText = actionType_->currentText();
             infoText.append(": ");
