@@ -24,7 +24,11 @@ macro(add_unit_test NAME)
     if(${TEST_APP})
         qt4_wrap_cpp(TEST_${NAME}_MOCS ${TEST_${NAME}_MOC_HEADERS})
     endif(${TEST_APP})
+
     add_executable(${NAME} ${CXX_${NAME}_OUTPUT_DIR}/${NAME}.cxx ${TEST_${NAME}_MOCS})
+
+    add_dependencies(${NAME} fakeInputStatic fakeInputShared)
+
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties("${NAME}" 
         PROPERTIES
@@ -39,6 +43,8 @@ macro(add_manual_test NAME)
     endif(${TEST_APP})
 
     add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
+
+    add_dependencies(${NAME} fakeInputStatic fakeInputShared)
 
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties(${NAME} 
@@ -57,6 +63,8 @@ macro(add_manual_test_gui NAME)
     else(${WIN32} AND NOT ${DEBUG})
         add_executable(${NAME} ${TEST_${NAME}_FILES} ${TEST_${NAME}_MOCS})
     endif(${WIN32} AND NOT ${DEBUG})
+
+    add_dependencies(${NAME} fakeInputStatic fakeInputShared)
 
     target_link_libraries(${NAME} ${TEST_${NAME}_LINK_LIBS} fakeInput)
     set_target_properties(${NAME} 

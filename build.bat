@@ -3,6 +3,8 @@ cd %~dp0
 
 if "%1"=="/r" (
     if exist build (rmdir /S /Q build)
+    if exist bin (rmdir /S /Q bin)
+    if exist doc (rmdir /S /Q doc)
 )
 
 if not exist build (mkdir build)
