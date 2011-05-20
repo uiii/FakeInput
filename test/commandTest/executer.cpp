@@ -7,7 +7,7 @@
 #include <string>
 #include <iostream>
 
-#include "command.hpp"
+#include "system.hpp"
 
 Executer::Executer():
     QWidget(0)
@@ -33,5 +33,5 @@ Executer::~Executer()
 
 void Executer::runCommand()
 { 
-    FakeInput::Command::run(cmd_->text().toAscii().data());
+    FakeInput::System::run(cmd_->text().toAscii().data());
 }

@@ -7,7 +7,7 @@ set(SRCS_UNIX
     display_unix.cpp
     mouse_unix.cpp
     mapper_unix.cpp
-    command_unix.cpp
+    system_unix.cpp
     keyboard_unix.cpp
     key_unix.cpp
 )
@@ -15,7 +15,7 @@ set(SRCS_UNIX
 set(SRCS_WIN
     mouse_win.cpp
     mapper_win.cpp
-    command_win.cpp
+    system_win.cpp
     keyboard_win.cpp
     key_win.cpp
 )
