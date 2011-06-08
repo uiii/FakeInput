@@ -60,6 +60,7 @@ add_library(fakeInputShared SHARED ${SRCS})
 target_link_libraries(fakeInputShared ${LIBS})
 set_target_properties(fakeInputShared
     PROPERTIES
-        OUTPUT_NAME fakeInput
-        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/lib
+        OUTPUT_NAME fakeInputs
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/lib # needed on Unix
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin/lib # needed on Windows
 )
