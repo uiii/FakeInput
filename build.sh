@@ -15,15 +15,31 @@ function runTests()
 BASEDIR=`dirname $0`
 cd $BASEDIR
 
-if [ $# -gt 0 ]
-then
+rebuild=false
+buildType="Release"
+testApp="OFF"
+doc="OFF"
+
+while [ $# -gt 0 ]
+do
     if [ $1 == "-r" ]
     then
-        rebuild="TRUE"
+        rebuild=true
+    elif [ $1 == "-D" ]
+    then
+        buildType="Debug"
+    elif [ $1 == "-test" ]
+    then
+        testApp="ON"
+    elif [ $1 == "-doc" ]
+    then
+        doc="ON"
     fi
-fi
 
-if [ "$rebuild" == "TRUE" ]
+    shift
+done
+
+if [ $rebuild == true ]
 then
     rm -r ./build
     rm -r ./bin
@@ -35,7 +51,7 @@ cd ./build
 
 clear &&
     title "CMAKE:\n" &&
-        cmake -DCMAKE_BUILD_TYPE=Debug -DTEST_APP=ON -DDOC=ON ../ && hr &&
+        cmake -DCMAKE_BUILD_TYPE=$buildType -DTEST_APP=$testApp -DDOC=$doc ../ && hr &&
     title "MAKE:\n" &&
         make
 
