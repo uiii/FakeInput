@@ -1,0 +1,20 @@
+if (EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_path_manifest.txt")
+    file(READ "@CMAKE_CURRENT_BINARY_DIR@/install_path_manifest.txt" paths)
+    string(REGEX REPLACE "\n" ";" paths "${paths}")
+    foreach (path ${paths})
+        message(STATUS "Uninstalling \"${path}\" from PATH variable")
+        get_filename_component(ENV_PATH
+            "[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment;Path]" ABSOLUTE CACHE
+        )
+
+        string(REGEX REPLACE "@CMAKE_BINARY_DIR@/?" "" ENV_PATH "${ENV_PATH}")
+        string(REGEX REPLACE ";?${path}" "" ENV_PATH "${ENV_PATH}")
+        string(REGEX REPLACE "/" "\\\\" ENV_PATH "${ENV_PATH}")
+
+        execute_process(
+            COMMAND @CMAKE_COMMAND@ -E write_regv
+                "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment;Path"
+                "${ENV_PATH}"
+        )            
+    endforeach(path)
+endif (EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_path_manifest.txt")

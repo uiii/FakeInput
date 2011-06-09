@@ -76,7 +76,13 @@ add_subdirectory(src)
 set(QT_LIBRARIES ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY})
 add_subdirectory(test)
 
-install_pkg_config_file(${CMAKE_HOME_DIRECTORY}/fakeinput.pc.in)
+if(${UNIX})
+    install_pkg_config_file(${CMAKE_HOME_DIRECTORY}/fakeinput.pc.in)
+endif(${UNIX})
+
+if(${WIN32})
+    install_to_win_path(${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR})
+endif(${WIN32})
 
 add_uninstall_target(${CMAKE_HOME_DIRECTORY}/config/cmake)
 

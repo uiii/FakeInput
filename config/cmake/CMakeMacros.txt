@@ -94,16 +94,23 @@ macro(add_uninstall_target PATH)
         IMMEDIATE @ONLY
     )
 
+    configure_file(
+        "${PATH}/cmake_uninstall_path.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall_path.cmake"
+        IMMEDIATE @ONLY
+    )
+
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall_dir.cmake
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall_path.cmake
     )
 endmacro(add_uninstall_target)
 
 macro(install_directory PATH)
     install(CODE
         "
-        file(MAKE_DIRECTORY ${PATH})
+        file(MAKE_DIRECTORY \"${PATH}\")
         file(APPEND ${CMAKE_BINARY_DIR}/install_dir_manifest.txt \"${PATH}\n\")
         "
     )
@@ -127,3 +134,27 @@ macro(install_pkg_config_file IN_FILE)
         DESTINATION "${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR}/pkgconfig"
     )
 endmacro(install_pkg_config_file IN_FILE)    
+
+macro(install_to_win_path PATH)
+    install(CODE
+        "
+        get_filename_component(ENV_PATH
+            \"[HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment;Path]\" ABSOLUTE CACHE
+        )
+
+        string(REGEX REPLACE \"${CMAKE_BINARY_DIR}/?\" \"\" ENV_PATH \"\${ENV_PATH}\")
+        string(REGEX MATCH \"${PATH}\" PATH_MATCH \"\${ENV_PATH}\")
+        string(REGEX REPLACE \"/\" \"\\\\\\\\\" ENV_PATH \"\${ENV_PATH}\")
+
+        if(\"\${PATH_MATCH}\" STREQUAL \"\")
+            execute_process(
+                COMMAND @CMAKE_COMMAND@ -E write_regv
+                    \"HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Control\\\\Session Manager\\\\Environment;Path\"
+                    \"\${ENV_PATH};${PATH}\"
+            )            
+        endif(\"\${PATH_MATCH}\" STREQUAL \"\")
+
+        file(APPEND ${CMAKE_BINARY_DIR}/install_path_manifest.txt \"${PATH}\\n\")
+        "
+    )
+endmacro(install_to_win_path PATH)
