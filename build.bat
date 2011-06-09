@@ -29,8 +29,7 @@ if not exist build (mkdir build)
 cd build
 
 cls
-    cmake ../ -DTEST_APP=%test% -DCMAKE_BUILD_TYPE=%buildType% -DDOC=%doc% && msbuild FakeInput.sln
-        :: /p:Configuration=Release
+    cmake ../ -DTEST_APP=%test% -DCMAKE_BUILD_TYPE=%buildType% -DDOC=%doc% && msbuild FakeInput.sln /p:Configuration=Release
 
 cd ..
 
