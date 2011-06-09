@@ -41,11 +41,11 @@ if(${DOC} AND (EXISTS ${CMAKE_HOME_DIRECTORY}/Doxyfile.in))
     file(MAKE_DIRECTORY ${CMAKE_HOME_DIRECTORY}/doc/doxygen)
     configure_file(
         ${CMAKE_HOME_DIRECTORY}/Doxyfile.in
-        ${CMAKE_HOME_DIRECTORY}/Doxyfile
+        ${CMAKE_BINARY_DIR}/Doxyfile
         @ONLY
     )
     add_custom_target(doc ALL
-            ${DOXYGEN_EXECUTABLE} ${CMAKE_HOME_DIRECTORY}/Doxyfile
+            ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
             WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
             COMMENT "Generating API documentation with Doxygen"
     )

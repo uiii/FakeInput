@@ -118,12 +118,12 @@ macro(install_pkg_config_file IN_FILE)
         set(SUBVERSION ${SUBVERSION})
         configure_file(
             \"${IN_FILE}\"
-            \"${CMAKE_CURRENT_BINARY_DIR}/${file_name}\"
+            \"${CMAKE_BINARY_DIR}/${file_name}\"
             IMMEDIATE @ONLY
         )
         "
     )
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${file_name}
+    install(FILES ${CMAKE_BINARY_DIR}/${file_name}
         DESTINATION "${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR}/pkgconfig"
     )
 endmacro(install_pkg_config_file IN_FILE)    
