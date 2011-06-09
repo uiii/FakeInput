@@ -1,0 +1,5 @@
+#include "actionsequence.hpp"
+#include "commandaction.hpp"
+#include "keyaction.hpp"
+#include "mouseaction.hpp"
+#include "waitaction.hpp"

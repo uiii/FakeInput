@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(FakeInput)
 
+set(VERSION 1)
+set(SUBVERSION 0)
+
 find_package(Qt4)
 find_package(Doxygen)
 find_package(PkgConfig REQUIRED)
@@ -57,9 +60,25 @@ configure_file(
 
 include_directories(${PROJECT_BINARY_DIR}/src)
 
+if("${INSTALL_PREFIX}" STREQUAL "")
+    set(INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+endif("${INSTALL_PREFIX}" STREQUAL "")
+
+if(NOT "${INSTALL_LIBRARY_DIR}")
+    set(INSTALL_LIBRARY_DIR "lib")
+endif(NOT "${INSTALL_LIBRARY_DIR}")
+
+if(NOT "${INSTALL_HEADER_DIR}")
+    set(INSTALL_HEADER_DIR "include")
+endif(NOT "${INSTALL_HEADER_DIR}")
+
 add_subdirectory(src)
 set(QT_LIBRARIES ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY})
 add_subdirectory(test)
+
+install_pkg_config_file(${CMAKE_HOME_DIRECTORY}/fakeinput.pc.in)
+
+add_uninstall_target(${CMAKE_HOME_DIRECTORY}/config/cmake)
 
 message(STATUS "")
 message(STATUS "OPTIONS: (to change it: -D<option>=<ON|OFF>)")

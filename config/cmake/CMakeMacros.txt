@@ -80,3 +80,50 @@ macro(add_manual_test_gui NAME)
         )
     endif("${WIN32}" AND NOT "${DEBUG}")
 endmacro(add_manual_test_gui)
+
+macro(add_uninstall_target PATH)
+    configure_file(
+        "${PATH}/cmake_uninstall.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+        IMMEDIATE @ONLY
+    )
+
+    configure_file(
+        "${PATH}/cmake_uninstall_dir.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall_dir.cmake"
+        IMMEDIATE @ONLY
+    )
+
+    add_custom_target(uninstall
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall_dir.cmake
+    )
+endmacro(add_uninstall_target)
+
+macro(install_directory PATH)
+    install(CODE
+        "
+        file(MAKE_DIRECTORY ${PATH})
+        file(APPEND ${CMAKE_BINARY_DIR}/install_dir_manifest.txt \"${PATH}\n\")
+        "
+    )
+endmacro(install_directory PATH)
+
+macro(install_pkg_config_file IN_FILE)    
+    string(REGEX MATCH "[^/]+$" file_name "${IN_FILE}")
+    string(REGEX REPLACE "\\.in$" "" file_name "${file_name}")
+    install(CODE
+        "
+        set(VERSION ${VERSION})
+        set(SUBVERSION ${SUBVERSION})
+        configure_file(
+            \"${IN_FILE}\"
+            \"${CMAKE_CURRENT_BINARY_DIR}/${file_name}\"
+            IMMEDIATE @ONLY
+        )
+        "
+    )
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${file_name}
+        DESTINATION "${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR}/pkgconfig"
+    )
+endmacro(install_pkg_config_file IN_FILE)    

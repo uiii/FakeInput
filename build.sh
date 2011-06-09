@@ -41,9 +41,9 @@ done
 
 if [ $rebuild == true ]
 then
-    rm -r ./build
-    rm -r ./bin
-    rm -r ./doc
+    rm -rf ./build
+    rm -rf ./bin
+    rm -rf ./doc
 fi
 
 mkdir ./build
