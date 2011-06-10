@@ -54,7 +54,7 @@ Build & Installation
 
         on _Unix-like platform_ open your console
 
-        on _Windows_ open Visual Studio command prompt
+        on _Windows_ open _Visual Studio_ command prompt
 
         go to _FakeInput_'s root and make build directory:
 
@@ -87,7 +87,7 @@ Build & Installation
                 msbuild FakeInput.sln /p:Configuration=Release
                 msbuild INSTALL.vcxproj /p:Configuration=Release
 
-            or you can do it in Visual Studio (open FakeInput.sln project file)
+            or you can do it in _Visual Studio_ (open FakeInput.sln project file)
 
         - The path where the library will be installed can be set during previous phase (*prepare the build*),
         default paths are:
