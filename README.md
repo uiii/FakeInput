@@ -64,17 +64,11 @@ Build & Installation
 
         * `cmake ../` command has some options and properties you can set.
 
-            if you want to build test application:
-                
-                set `-DTEST_APP=ON`
+            if you want to build test application set `-DTEST_APP=ON`
 
-            if you want to generate API documentation:
-                
-                set `-DDOC=ON`
+            if you want to generate API documentation set `-DDOC=ON`
 
-            to specify installation location:
-                
-                set `-DINSTALL_PREFIX=path/where/to/install`
+            to specify installation location set `-DINSTALL_PREFIX=path/where/to/install`
             
     - compile & install:
 
