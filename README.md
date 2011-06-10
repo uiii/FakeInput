@@ -56,42 +56,42 @@ Build & Installation
 
     go to _FakeInput_'s root and make build directory:
 
-        cd FakeInput && mkdir build && cd build
+        $ cd FakeInput && mkdir build && cd build
 
     now generate files needed to build:
 
-        cmake ../
+        $ cmake ../
 
-    * `cmake ../` command has some options and properties you can set.
+    `cmake ../` command has some options and properties you can set.
 
-        if you want to build test application set `-DTEST_APP=ON`
+    if you want to build test application set `-DTEST_APP=ON`
 
-        if you want to generate API documentation set `-DDOC=ON`
+    if you want to generate API documentation set `-DDOC=ON`
 
-        to specify installation location set `-DINSTALL_PREFIX=path/where/to/install`
+    to specify installation location set `-DINSTALL_PREFIX=path/where/to/install`
             
 3. **Compile & install**:
 
-    - on _Unix-like platform_ run:
+    on _Unix-like platform_ run:
 
-            make
-            make install
+        $ make
+        $ make install
 
-    - on _Windows_:
+    on _Windows_:
 
-        it depends on the generator you set to CMake (see [this][generator]),
-        by default it is Visual Studio project file:
+    it depends on the generator you set to CMake (see [this][generator]),
+    by default it is Visual Studio project file:
 
-            msbuild FakeInput.sln /p:Configuration=Release
-            msbuild INSTALL.vcxproj /p:Configuration=Release
+        > msbuild FakeInput.sln /p:Configuration=Release
+        > msbuild INSTALL.vcxproj /p:Configuration=Release
 
-        or you can do it in _Visual Studio_ (open FakeInput.sln project file)
+    or you can do it in _Visual Studio_ (open FakeInput.sln project file)
 
-    - The path where the library will be installed can be set during previous phase (*prepare the build*),
+    The path where the library will be installed can be set during previous phase (*prepare the build*),
     default paths are:
 
-        `/usr/local` on _Unix-like platform_
+    `/usr/local` on _Unix-like platform_
 
-        `C:\Program Files\FakeInput` on _Windows_
+    `C:\Program Files\FakeInput` on _Windows_
 
 [generator]: http://www.cmake.org/cmake/help/cmake-2-8-docs.html#opt:-Ggenerator-name
