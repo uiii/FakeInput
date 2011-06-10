@@ -36,7 +36,7 @@ If you want to generate API documentation, you need this:
 Build & Installation
 --------------------
 
-1. First you have to download the source code:
+1. **First you have to download the source code**:
 
     - using [Git](http://git-scm.com):
 
@@ -48,13 +48,15 @@ Build & Installation
 
         [.zip](https://github.com/uiii/FakeInput/zipball/master)
 
-2. Build the library:
-
-    on Unix open your console, on Windows open Visual Studio command prompt
+2. **Build the library**:
 
     - prepare the build:
 
-        go to FakeInput's root and make build directory:
+        on _Unix-like platform_ open your console
+
+        on _Windows_ open Visual Studio command prompt
+
+        go to _FakeInput_'s root and make build directory:
 
             cd FakeInput && mkdir build && cd build
 
@@ -72,12 +74,12 @@ Build & Installation
             
     - compile & install:
 
-        - on Unix-like platform run:
+        - on _Unix-like platform_ run:
 
                 make
                 make install
 
-        - on Windows:
+        - on _Windows_:
 
             it depends on the generator you set to CMake (see [this][generator]),
             by default it is Visual Studio project file:
@@ -86,5 +88,12 @@ Build & Installation
                 msbuild INSTALL.vcxproj /p:Configuration=Release
 
             or you can do it in Visual Studio (open FakeInput.sln project file)
+
+        - The path where the library will be installed can be set during previous phase (*prepare the build*),
+        default paths are:
+
+            `/usr/local` on _Unix-like platform_
+
+            `C:\Program Files\FakeInput` on _Windows_
 
 [generator]: http://www.cmake.org/cmake/help/cmake-2-8-docs.html#opt:-Ggenerator-name
