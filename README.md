@@ -71,6 +71,8 @@ Build
 
     Now the **compiled library** is in the `bin/lib` directory.
 
+Additional options:
+
 * If you want to build **test applications** run _CMake_ in 3. step with option `-DTEST_APP=ON`.
 Test applications will be in the `bin/test` directory.
 
