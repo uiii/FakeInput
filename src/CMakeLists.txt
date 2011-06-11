@@ -115,8 +115,6 @@ install(FILES fakeinput.hpp
     DESTINATION ${INSTALL_PREFIX}/${INSTALL_HEADER_DIR}
 )
 
-install_directory(${INSTALL_PREFIX}/${INSTALL_HEADER_DIR}/fakeinput)
-
 install(FILES ${HDRS}
     DESTINATION ${INSTALL_PREFIX}/${INSTALL_HEADER_DIR}/fakeinput
 )

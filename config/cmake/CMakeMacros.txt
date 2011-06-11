@@ -110,8 +110,18 @@ endmacro(add_uninstall_target)
 macro(install_directory PATH)
     install(CODE
         "
-        file(MAKE_DIRECTORY \"${PATH}\")
-        file(APPEND ${CMAKE_BINARY_DIR}/install_dir_manifest.txt \"${PATH}\n\")
+        if(NOT EXISTS \"${PATH}\")
+            file(MAKE_DIRECTORY \"${PATH}\")
+
+            set(manifest_file ${CMAKE_BINARY_DIR}/install_dir_manifest.txt)
+
+            if(EXISTS \${manifest_file})
+                file(READ \${manifest_file} manifest_content)
+            endif(EXISTS \${manifest_file})
+
+            file(WRITE \${manifest_file} \"${PATH}\n\")
+            file(APPEND \${manifest_file} \"\${manifest_content}\")
+        endif(NOT EXISTS \"${PATH}\")
         "
     )
 endmacro(install_directory PATH)
@@ -130,6 +140,7 @@ macro(install_pkg_config_file IN_FILE)
         )
         "
     )
+    install_directory(${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR}/pkgconfig)
     install(FILES ${CMAKE_BINARY_DIR}/${file_name}
         DESTINATION "${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR}/pkgconfig"
     )

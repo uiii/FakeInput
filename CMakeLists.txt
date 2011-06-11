@@ -72,6 +72,11 @@ if(NOT "${INSTALL_HEADER_DIR}")
     set(INSTALL_HEADER_DIR "include")
 endif(NOT "${INSTALL_HEADER_DIR}")
 
+install_directory(${INSTALL_PREFIX})
+install_directory(${INSTALL_PREFIX}/${INSTALL_LIBRARY_DIR})
+install_directory(${INSTALL_PREFIX}/${INSTALL_HEADER_DIR})
+install_directory(${INSTALL_PREFIX}/${INSTALL_HEADER_DIR}/fakeinput)
+
 add_subdirectory(src)
 set(QT_LIBRARIES ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY})
 add_subdirectory(test)
