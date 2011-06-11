@@ -42,9 +42,9 @@ You can use [Git](http://git-scm.com):
 
 or you can download the archive
 
-    [.tar.gz](https://github.com/uiii/FakeInput/tarball/master)
+[.tar.gz](https://github.com/uiii/FakeInput/tarball/master)
 
-    [.zip](https://github.com/uiii/FakeInput/zipball/master)
+[.zip](https://github.com/uiii/FakeInput/zipball/master)
 
 Build
 -----
@@ -72,10 +72,10 @@ Build
     Now the **compiled library** is in the `bin/lib` directory.
 
 * If you want to build **test applications** run _CMake_ in 3. step with option `-DTEST_APP=ON`.
-Test applications will be after compilation in the `bin/test` directory
+Test applications will be in the `bin/test` directory.
 
 * If you want to generate **API documentation** run _CMake_ in 3. step with option `-DDOC=ON`.
-Generated documentation will be in the `doc` directory
+Generated documentation will be in the `doc` directory.
 
 Install
 -------
