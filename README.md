@@ -33,65 +33,82 @@ If you want to generate API documentation, you need this:
 
 - [Doxygen](http://www.stack.nl/~dimitri/doxygen/) documentation system
 
-Build & Installation
---------------------
+Download
+--------
 
-1. **First you have to download the source code**:
+You can use [Git](http://git-scm.com):
 
-    - using [Git](http://git-scm.com):
+    $ git clone https://uiii@github.com/uiii/FakeInput.git
 
-        `git clone https://uiii@github.com/uiii/FakeInput.git`
+or you can download the archive
 
-    - or download the archive
+    [.tar.gz](https://github.com/uiii/FakeInput/tarball/master)
 
-        [.tar.gz](https://github.com/uiii/FakeInput/tarball/master)
+    [.zip](https://github.com/uiii/FakeInput/zipball/master)
 
-        [.zip](https://github.com/uiii/FakeInput/zipball/master)
+Build
+-----
 
-2. **Prepare the build**:
+1. Open your console (on _Unix-like platform_) or _Visual Studio command prompt_ (on _Windows_).
 
-    on _Unix-like platform_ open your console
-
-    on _Windows_ open _Visual Studio_ command prompt
-
-    go to _FakeInput_'s root and make build directory:
+2. Go to _FakeInput_'s root and make build directory:
 
         $ cd FakeInput && mkdir build && cd build
 
-    now generate files needed to build:
+3. Now generate files needed to build:
 
         $ cmake ../
 
-    `cmake ../` command has some options and properties you can set.
+4. Compile:
 
-    if you want to build test application set `-DTEST_APP=ON`
-
-    if you want to generate API documentation set `-DDOC=ON`
-
-    to specify installation location set `-DINSTALL_PREFIX=path/where/to/install`
-            
-3. **Compile & install**:
-
-    on _Unix-like platform_ run:
+    On _Unix-like platform_ run:
 
         $ make
-        $ make install
-
-    on _Windows_:
-
-    it depends on the generator you set to CMake (see [this][generator]),
-    by default it is Visual Studio project file:
+            
+    On _Windows_ (see _Notes_):
 
         > msbuild FakeInput.sln /p:Configuration=Release
-        > msbuild INSTALL.vcxproj /p:Configuration=Release
 
-    or you can do it in _Visual Studio_ (open FakeInput.sln project file)
+    Now the **compiled library** is in the `bin/lib` directory.
 
-    The path where the library will be installed can be set during previous phase (*prepare the build*),
-    default paths are:
+* If you want to build **test applications** run _CMake_ in 3. step with option `-DTEST_APP=ON`.
+Test applications will be after compilation in the `bin/test` directory
 
-    `/usr/local` on _Unix-like platform_
+* If you want to generate **API documentation** run _CMake_ in 3. step with option `-DDOC=ON`.
+Generated documentation will be in the `doc` directory
 
-    `C:\Program Files\FakeInput` on _Windows_
+Install
+-------
 
-[generator]: http://www.cmake.org/cmake/help/cmake-2-8-docs.html#opt:-Ggenerator-name
+Default path where to install the library is `/usr/local` on _Unix-like platform_ and
+`C:\Program Files\FakeInput` on _Windows_. To specify another **installation location**
+run _CMake_ in the 3. step of _Build_ section with option `-DINSTALL_PREFIX=path/where/to/install`
+
+On _Unix-like platform_ run:
+
+    $ make install
+
+On _Windows_ (see _Notes_):
+
+    > msbuild INSTALL.vcxproj /p:Configuration=Release
+
+Uninstall
+---------
+
+On _Unix-like platform_ run:
+
+    $ make uninstall
+
+On _Windows_ (see _Notes_):
+
+    > msbuild uninstall.vcxproj
+
+This will remove all files and directories that were created during install.
+
+Notes
+-----
+
+Appropriate command depends on the generator you set to _CMake_ (see [generator-documentation]),
+by default it is _Visual Studio_ project file.
+
+[generator-documentation]: http://www.cmake.org/cmake/help/cmake-2-8-docs.html#opt:-Ggenerator-name
