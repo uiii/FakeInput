@@ -57,7 +57,7 @@ Sender::Sender():
 
 Sender::~Sender() {}
 
-#ifdef WIN32
+#ifdef WINDOWS
 bool Sender::winEvent(MSG* message, long* result)
 {
     if(message->message == WM_ACTIVATE)
@@ -76,7 +76,7 @@ void Sender::setKey(FakeInput::Key key)
 
 void Sender::sendPress()
 {
-#ifdef WIN32
+#ifdef WINDOWS
     SetActiveWindow(focusWindow_);
 #endif
     FakeInput::Keyboard::pressKey(key_);
@@ -84,7 +84,7 @@ void Sender::sendPress()
 
 void Sender::sendRelease()
 {
-#ifdef WIN32
+#ifdef WINDOWS
     SetActiveWindow(focusWindow_);
 #endif
     FakeInput::Keyboard::releaseKey(key_);

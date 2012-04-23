@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#include "waitaction.hpp"
+#include "actions/waitaction.hpp"
 
 #include "system.hpp"
 

@@ -1,6 +1,0 @@
-if(${TEST_APP})
-    add_subdirectory(actionsTest)
-    add_subdirectory(keyEventTest)
-    add_subdirectory(mouseEventTest)
-    add_subdirectory(commandTest)
-endif(${TEST_APP})

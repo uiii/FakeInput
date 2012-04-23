@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#include "actionsequence.hpp"
+#include "actions/actionsequence.hpp"
 
 #include <iostream>
 

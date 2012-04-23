@@ -22,43 +22,34 @@
  * THE SOFTWARE.
  */
 
-#ifndef FI_KEY_BASE_HPP
-#define FI_KEY_BASE_HPP
-
-#include "config.hpp"
+#ifndef FI_SYSTEM_HPP
+#define FI_SYSTEM_HPP
 
 #include <string>
 
 namespace FakeInput
 {
-    /** Represents real keyboard button.
+    /** Handler of some system operations.
+     *
+     * Allows you to run command-line commands
+     * and wait for specified time
      */
-    class Key_base
+    class System
     {
     public:
-        /** Gives the hardware code of the key.
+        /** Executes command-line command.
          *
-         * @returns
-         *     Device dependend code of the key.
+         * @param cmd
+         *     %Command to run.
          */
-        virtual unsigned int code() const;
+        static void run(const std::string& cmd);
 
-        /** Gives the name of the key.
+        /** Sleeps the current thread and wait for specified time.
          *
-         * @returns
-         *     The name of the key.
+         * @param milisec
+         *     time to wait in miliseconds
          */
-        virtual const std::string& name() const;
-
-    protected:
-        /** Key_base constructor.
-         *
-         * Creates key representing no real key.
-         */
-        Key_base();
-
-        unsigned int code_;
-        std::string name_;
+        static void wait(unsigned int milisec);
     };
 }
 

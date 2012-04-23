@@ -25,7 +25,6 @@
 #ifndef FI_MOUSE_HPP
 #define FI_MOUSE_HPP
 
-#include "config.hpp"
 #include "types.hpp"
 
 namespace FakeInput

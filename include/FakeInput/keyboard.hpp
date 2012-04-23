@@ -22,21 +22,44 @@
  * THE SOFTWARE.
  */
 
-#ifndef FI_DISPLAY_UNIX_HPP
-#define FI_DISPLAY_UNIX_HPP
+#ifndef FI_KEYBOARD_HPP
+#define FI_KEYBOARD_HPP
 
-#include "config.hpp"
-
-#include <X11/Xlib.h>
+#include "key.hpp"
 
 namespace FakeInput
 {
-    /** Get connection to the X server
+    /** Represents keyboard device.
      *
-     * @warning @image html tux.png
-     *    Unix-like platform only
+     * Allows you to simulate key press.
      */
-    Display* display();
+    class Keyboard
+    {
+    public:
+        /** Simulate key press.
+         *
+         * @param key
+         *      Key object representing real key to be pressed.
+         */
+        static void pressKey(Key key);
+
+        /** Simulate key release 
+         *
+         * @param key
+         *      Key object representing real key to be released.
+         */
+        static void releaseKey(Key key);
+
+    private:
+        /** Send fake key event to the system.
+         *
+         * @param key
+         *      Key object representing real key to be pressed.
+         * @param isPress
+         *      Whether event is press or release.
+         */
+        static void sendKeyEvent_(Key key, bool isPress);        
+    };
 }
 
 #endif

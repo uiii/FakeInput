@@ -37,7 +37,7 @@
 
 #ifdef UNIX
     #include <X11/Xlib.h>
-#elif WIN32
+#elif WINDOWS
     #include <windows.h>
     #define IS_LEFT_PRESSED \
         ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && ! GetSystemMetrics(SM_SWAPBUTTON)) \
@@ -174,7 +174,7 @@ bool MouseController::x11Event(XEvent* event)
 
     return false;
 }
-#elif WIN32
+#elif WINDOWS
 bool MouseController::winEvent(MSG* message, long* result)
 {
     if(message->message == WM_KILLFOCUS)

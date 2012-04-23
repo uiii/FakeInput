@@ -222,7 +222,7 @@ bool Grabber::x11Event(XEvent* event)
 
     return false;
 }
-#elif WIN32
+#elif WINDOWS
 bool Grabber::winEvent(MSG* message, long* result)
 {
     isReady_ = true;

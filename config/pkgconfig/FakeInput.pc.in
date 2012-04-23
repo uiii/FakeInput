@@ -1,0 +1,10 @@
+libdir=${INSTALL_PREFIX}/lib
+includedir=${INSTALL_PREFIX}/include
+
+Name: FakeInput
+Description: User input simulation library
+URL: https://github.com/uiii/FakeInput
+Version: 1.1.0
+Requires.private: x11 xtst
+Cflags: -I${includedir}
+Libs: -L${libdir} -lFakeInput

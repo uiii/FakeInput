@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#include "keyaction.hpp"
+#include "actions/keyaction.hpp"
 
 #include "keyboard.hpp"
 

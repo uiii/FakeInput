@@ -39,7 +39,7 @@ public:
 
     void setKey(FakeInput::Key key);
 
-#ifdef WIN32
+#ifdef WINDOWS
     bool winEvent(MSG* message, long* result);
 #endif
 
@@ -50,7 +50,7 @@ public slots:
 private:
 #ifdef UNIX
     Display* display_;
-#elif WIN32
+#elif WINDOWS
     HWND focusWindow_;
 #endif
 

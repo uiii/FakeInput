@@ -53,7 +53,7 @@ public:
 
 #ifdef UNIX
     bool x11Event(XEvent* event);
-#elif WIN32
+#elif WINDOWS
     bool winEvent(MSG* message, long* result);
 #endif
 

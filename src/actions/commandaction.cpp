@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-#include "commandaction.hpp"
+#include "actions/commandaction.hpp"
 
 #include "system.hpp"
 

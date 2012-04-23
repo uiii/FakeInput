@@ -25,8 +25,6 @@
 #ifndef FI_KEY_WIN_HPP
 #define FI_KEY_WIN_HPP
 
-#include "config.hpp"
-
 #include <windows.h>
 
 #include <string>

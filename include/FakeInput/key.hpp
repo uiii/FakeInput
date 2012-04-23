@@ -22,25 +22,31 @@
  * THE SOFTWARE.
  */
 
-#ifndef FI_ACTION_HPP
-#define FI_ACTION_HPP
+#ifndef FI_KEY_HPP
+#define FI_KEY_HPP
+
+#ifdef UNIX
+    #include "key_unix.hpp"
+#elif WINDOWS
+    #include "key_win.hpp"
+#endif
 
 namespace FakeInput
 {
-    /** Abstract class representing arbitrary action which can be sent. */
-    class Action
-    {
-    public:
-        /** Creates new copy of this action.
-         *
-         * @returns
-         *     New copy of this action allocated on heap.
-         */
-        virtual Action* clone() const = 0;
-
-        /** Performs the action. */
-        virtual void send() const = 0;
-    };
+#ifdef UNIX
+    /** Class representing a real key.
+     *
+     * @image html tux.png
+     * On Unix-like platform derived from Key_unix
+     */
+    typedef Key_unix Key;
+#elif WINDOWS
+    /**
+     * @image html windows.png
+     * On Windows derived from Key_win
+     */
+    typedef Key_win Key;
+#endif
 }
 
 #endif

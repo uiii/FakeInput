@@ -25,8 +25,6 @@
 #ifndef FI_KEY_UNIX_HPP
 #define FI_KEY_UNIX_HPP
 
-#include "config.hpp"
-
 #include <X11/Xlib.h>
 
 #include <string>

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+script=$(readlink -f $0)
+run_dir=$(dirname $script)
+
+license="GPLv3"
+
+year=${year:-`date +"%Y"`}
+author=${author:-"Richard Jedlička"}
+project=${project:-"Gecon Framework"}
+url=${url:-"https://github.com/uiii/GeconFramework"}
+email=${email:-"uiii.dev@gmail.com"}
+
+vars="YEAR=${year},AUTHOR=${author},PROJECT_NAME=${project},PROJECT_URL=${url},EMAIL=${email}"
+
+prefix=${run_dir}/../
+
+dirs='
+    src 
+    include/Gecon 
+    include/Gecon/private
+'
+
+filter="*.{hpp,cpp,tpp}"
+
+for dir in $dirs
+do
+    path=${prefix}${dir}
+    codelicensator "$path" "$license" -f "$filter" -v "$vars" "$@"
+done
