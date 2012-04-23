@@ -2,4 +2,6 @@ bin
 doc
 build
 *.swp
+lib
+bin
 /FakeInput.*
