@@ -22,5 +22,13 @@ solution "FakeInput"
     configuration "Release"
         flags { "Optimize" }
 
+    newoption {
+        trigger = "test-app",
+        description = "Build test applications (requires Qt4)"
+    }
+
     include "src"
-    --include "test"
+
+    if _OPTIONS["test-app"] then
+        include "test"
+    end
