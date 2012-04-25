@@ -26,7 +26,7 @@
 #define FI_MOUSEACTION_HPP
 
 #include "action.hpp"
-#include "mouse.hpp"
+#include "../mouse.hpp"
 
 namespace FakeInput
 {

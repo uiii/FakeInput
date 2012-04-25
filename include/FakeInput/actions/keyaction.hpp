@@ -26,7 +26,7 @@
 #define FI_KEYACTION_HPP
 
 #include "action.hpp"
-#include "key.hpp"
+#include "../key.hpp"
 
 namespace FakeInput
 {
