@@ -31,7 +31,8 @@ namespace FakeInput
 {
     void System::run(const std::string& cmd)
     {
-        std::string command = "start " + cmd;
+        std::string title = "run comand";
+        std::string command = "start \"" + title + "\" " + cmd;
 
         system(command.c_str());
     }
