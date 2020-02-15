@@ -10,7 +10,7 @@ It is written in C++ and ported to Unix-like and Windows platforms.
 Author
 ------
 
-Richard Jedlička (uiii.dev@gmail.com)
+Richard Jedlička (jedlicka.r@gmail.com)
 
 Requirements
 ------------
